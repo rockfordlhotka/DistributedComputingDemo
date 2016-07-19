@@ -8,13 +8,17 @@ namespace ParkingRampSimulator
 {
     public class Auto
     {
+        private const long TicksInADay = 864000000000;
         public string LicensePlate { get; private set; }
-        private float _lengthOfStay;
+        private DateTime _dateEntered;
+        public DateTime DateToDepart { get; private set; }
 
-        public Auto(string licensePlate, float lengthOfStay)
+        public Auto(string licensePlate, double lengthOfTrip)
         {
             LicensePlate = licensePlate;
-            _lengthOfStay = lengthOfStay;
+            _dateEntered = Simulator.Clock.Now;
+            var span = (long)(lengthOfTrip * TicksInADay);
+            DateToDepart = _dateEntered.Add(new TimeSpan(span));
         }
     }
 }
