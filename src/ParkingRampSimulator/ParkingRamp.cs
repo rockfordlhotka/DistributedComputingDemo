@@ -8,50 +8,52 @@ namespace ParkingRampSimulator
 {
     public class ParkingRamp : ParkingConstruct
     {
-        public string Name { get; private set; }
-        public List<Floor> Floors { get; private set; }
-        public bool IsFull
+        public List<ParkingFloor> Floors { get; private set; }
+        public override bool IsFull
+        {
+            get { return OpenLocations < 1; }
+        }
+
+        public override int OpenLocations
         {
             get
             {
-                var result = true;
-                foreach (var item in Floors)
-                    if (!item.IsFull)
-                    {
-                        result = false;
-                        break;
-                    }
-                return result;
+                return Floors.Sum(r => r.OpenLocations) - InQueue.Count;
             }
         }
 
-        public ParkingRamp(string name, int floorCount)
+        public ParkingRamp(ParkingConstruct parent, string name, int floorCount, int locationCount)
+            : base(parent, name)
         {
             Name = name;
-            Floors = new List<Floor>();
+            Floors = new List<ParkingFloor>();
             for (int i = 0; i < floorCount; i++)
             {
-                Floors.Add(new Floor(string.Format("{0}-{1}", Name, i.ToString()), 100));
+                Floors.Add(new ParkingFloor(this, string.Format("{0}-{1}", Name, i.ToString()), locationCount));
             }
         }
 
         public override void Tick()
         {
-            var gateCapacity = (int)(Simulator.Interval.TotalSeconds / 10); // 10 secs/car
-            for (int i = 0; i < gateCapacity; i++)
+            var openCount = Floors.Count(r => !r.IsFull);
+            if (openCount > 0)
             {
-                if (InQueue.Count > 0)
+                var gateCapacity = (int)(Simulator.Interval.TotalSeconds / 10.0);
+                for (int i = 0; i < gateCapacity; i++)
                 {
                     var floorsWithRoom = Floors.Where(r => !r.IsFull).ToList();
-                    if (floorsWithRoom.Count > 0)
+                    if (InQueue.Count > 0 && floorsWithRoom.Count > 0)
                     {
-                        var floor = Simulator.Random.Next(floorsWithRoom.Count - 1);
-                        floorsWithRoom[floor].AutoEntering(InQueue.Dequeue());
+                        var floor = Simulator.Random.Next(floorsWithRoom.Count);
+                        floorsWithRoom[floor].InQueue.Enqueue(InQueue.Dequeue());
                     }
                 }
             }
             foreach (var item in Floors)
                 item.Tick();
+            base.Tick();
+            while (OutQueue.Count > 0)
+                Parent.OutQueue.Enqueue(OutQueue.Dequeue());
         }
     }
 }

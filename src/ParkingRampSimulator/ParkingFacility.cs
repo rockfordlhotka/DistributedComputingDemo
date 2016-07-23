@@ -11,52 +11,106 @@ namespace ParkingRampSimulator
         public List<ParkingRamp> ParkingRamps { get; private set; }
 
         public ParkingFacility()
+            : base(null, string.Empty)
         {
             ParkingRamps = new List<ParkingRamp>();
         }
 
-        public bool IsFull
+        public override bool IsFull
         {
             get
             {
-                bool result = true;
-                foreach (var item in ParkingRamps)
-                    if (!item.IsFull)
-                    {
-                        result = false;
-                        break;
-                    }
-                return result;
+                return ParkingRamps.Sum(r => r.OpenLocations) < 1;
             }
+        }
+
+        public override int OpenLocations
+        {
+            get
+            {
+                return ParkingRamps.Sum(r => r.OpenLocations);
+            }
+        }
+
+        public void AutoArrives(Auto auto)
+        {
+            Simulator.Notifier.Notify(new AutoArrivingAtFacility { Auto = auto });
+            if (InQueue.Count < 50)
+                InQueue.Enqueue(auto);
+            else
+                Simulator.Notifier.Notify(new AutoAbandoningFacility { Auto = auto });
         }
 
         public override void Tick()
         {
             if (!IsFull)
             {
-                var gateCapacity = (int)(Simulator.Interval.TotalSeconds / 30 * 5); // 5 lanes, 30 secs/car
+                var gateCapacity = (int)(Simulator.Interval.TotalSeconds / 60.0 * 5);
                 for (int i = 0; i < gateCapacity; i++)
                 {
-                    if (InQueue.Count > 0)
+                    if (InQueue.Count > 0 && !IsFull)
                     {
                         var ramp = GetOpenRamp();
-                        ramp.AutoEntering(InQueue.Dequeue());
+                        if (ramp != null)
+                            ramp.InQueue.Enqueue(InQueue.Dequeue());
+                        else
+                            break;
                     }
                 }
             }
             foreach (var item in ParkingRamps)
                 item.Tick();
+            base.Tick();
+            while (OutQueue.Count > 0)
+            {
+                var auto = OutQueue.Dequeue();
+                Simulator.Notifier.Notify(new AutoDepartingFacility { Auto = auto });
+            }
         }
 
-        private ParkingRamp GetOpenRamp()
+        public ParkingRamp GetOpenRamp()
         {
             ParkingRamp ramp = null;
-            do
+            if (!IsFull)
             {
-                var rampNumber = Simulator.Random.Next(ParkingRamps.Count - 1);
-                ramp = ParkingRamps[rampNumber];
-            } while (!ramp.IsFull);
+                var potentialRamps = ParkingRamps.Where(r => !r.IsFull).ToList();
+                if (potentialRamps.Count > 0)
+                {
+                    var rampNumber = Simulator.Random.Next(potentialRamps.Count);
+                    ramp = potentialRamps[rampNumber];
+                }
+            }
             return ramp;
+        }
+
+        public class AutoArrivingAtFacility
+        {
+            public Auto Auto { get; set; }
+
+            public override string ToString()
+            {
+                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+            }
+        }
+
+        public class AutoAbandoningFacility
+        {
+            public Auto Auto { get; set; }
+
+            public override string ToString()
+            {
+                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+            }
+        }
+
+        public class AutoDepartingFacility
+        {
+            public Auto Auto { get; set; }
+
+            public override string ToString()
+            {
+                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+            }
         }
     }
 }

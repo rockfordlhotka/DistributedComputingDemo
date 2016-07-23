@@ -10,7 +10,7 @@ namespace ParkingRampSimulator
     {
         public string Name { get; private set; }
         public Auto Occupant { get; private set; }
-        public bool IsUsed { get { return (Occupant != null); } }
+        public bool IsFull { get { return (Occupant != null); } }
 
         public ParkingLocation(string name)
         {
@@ -21,6 +21,7 @@ namespace ParkingRampSimulator
         public void ParkAuto(Auto auto)
         {
             Occupant = auto;
+            Simulator.Notifier.Notify(new AutoParkedMessage { Auto = auto, Location = this });
         }
 
         public Auto AutoDeparts()
@@ -28,8 +29,31 @@ namespace ParkingRampSimulator
             if (Occupant == null)
                 throw new InvalidOperationException();
             var result = Occupant;
+            Simulator.Notifier.Notify(new AutoDepartedMessage { Auto = Occupant, Location = this });
             Occupant = null;
             return result;
+        }
+
+        public class AutoParkedMessage
+        {
+            public Auto Auto { get; set; }
+            public ParkingLocation Location { get; set; }
+
+            public override string ToString()
+            {
+                return Auto.LicensePlate + " " + Auto.DateToDepart + " " + Location.Name;
+            }
+        }
+
+        public class AutoDepartedMessage
+        {
+            public Auto Auto { get; set; }
+            public ParkingLocation Location { get; set; }
+
+            public override string ToString()
+            {
+                return Auto.LicensePlate + " " + Location.Name;
+            }
         }
     }
 }

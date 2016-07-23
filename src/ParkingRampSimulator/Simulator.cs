@@ -15,7 +15,7 @@ namespace ParkingRampSimulator
         public static Notifier Notifier { get; private set; }
 
         private AutoGenerator Generator = new AutoGenerator();
-        private int _frequency = 1000; // ms between simulation runs
+        private int _frequency = 500; // ms between simulation runs
         public static TimeSpan Interval { get; private set; }
 
         static Simulator()
@@ -28,10 +28,10 @@ namespace ParkingRampSimulator
 
         public Simulator()
         {
-            ParkingFacility.ParkingRamps.Add(new ParkingRamp("Red", 4));
-            ParkingFacility.ParkingRamps.Add(new ParkingRamp("Gold", 6));
-            ParkingFacility.ParkingRamps.Add(new ParkingRamp("Green", 4));
-            ParkingFacility.ParkingRamps.Add(new ParkingRamp("Blue", 5));
+            ParkingFacility.ParkingRamps.Add(new ParkingRamp(ParkingFacility, "Red", 4, 100));
+            ParkingFacility.ParkingRamps.Add(new ParkingRamp(ParkingFacility, "Gold", 6, 75));
+            ParkingFacility.ParkingRamps.Add(new ParkingRamp(ParkingFacility, "Green", 4, 150));
+            ParkingFacility.ParkingRamps.Add(new ParkingRamp(ParkingFacility, "Blue", 5, 125));
         }
 
         private Task _task;

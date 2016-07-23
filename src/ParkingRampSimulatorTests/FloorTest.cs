@@ -11,7 +11,7 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void NewFloor()
         {
-            var floor = new Floor("A", 10);
+            var floor = new ParkingFloor(null, "A", 10);
             Assert.AreEqual("A", floor.Name);
             Assert.AreEqual(10, floor.ParkingLocations.Count);
             Assert.AreEqual("A-0", floor.ParkingLocations[0].Name);
@@ -22,7 +22,7 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void FullFloor()
         {
-            var floor = new Floor("A", 5);
+            var floor = new ParkingFloor(null, "A", 5);
             foreach (var item in floor.ParkingLocations)
             {
                 item.ParkAuto(new Auto("", 0));
@@ -33,22 +33,24 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void FloorDepartAuto()
         {
-            var floor = new Floor("A", 5);
+            var floor = new ParkingFloor(null, "A", 5);
             foreach (var item in floor.ParkingLocations)
             {
                 item.ParkAuto(new Auto("", 0));
             }
-            var auto = floor.ParkingLocations[3].AutoDeparts();
+            var auto = floor.ParkingLocations[3].Occupant;
+            floor.AutoExitingFrom(floor.ParkingLocations[3]);
             Assert.IsNotNull(auto);
-            Assert.IsFalse(floor.IsFull);
             Assert.IsNull(floor.ParkingLocations[3].Occupant);
+            Assert.IsFalse(floor.IsFull);
+            Assert.AreEqual(1, floor.OutQueueLength);
         }
 
 
         [TestMethod]
         public void FloorOpenLocation()
         {
-            var floor = new Floor("A", 5);
+            var floor = new ParkingFloor(null, "A", 5);
             foreach (var item in floor.ParkingLocations)
             {
                 item.ParkAuto(new Auto("", 0));
@@ -62,8 +64,10 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void FloorTick()
         {
-            var floor = new Floor("A", 5);
-            floor.AutoEntering(new Auto("", .001));
+            var facility = new ParkingFacility();
+            var ramp = new ParkingRamp(facility, "Red", 0, 100);
+            var floor = new ParkingFloor(ramp, "A", 5);
+            floor.InQueue.Enqueue(new Auto("", .001));
             floor.Tick();
             Assert.AreEqual(1, floor.ParkingLocations.Where(r => r.Occupant != null).Count());
 

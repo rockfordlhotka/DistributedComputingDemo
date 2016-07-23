@@ -8,18 +8,28 @@ namespace ParkingRampSimulator
 {
     public class Clock
     {
-        public DateTime Now { get; private set; }
+        public DateTime Now { get; set; }
         private TimeSpan _interval;
 
         public Clock(TimeSpan interval)
         {
             _interval = interval;
-            Now = DateTime.Now.Subtract(new TimeSpan(365, 0, 0, 0));
         }
 
         public void Tick()
         {
             Now = Now.Add(_interval);
+            Simulator.Notifier.Notify(new ClockTickMessage { ClockTime = Now });
+        }
+
+        public class ClockTickMessage
+        {
+            public DateTime ClockTime { get; set; }
+
+            public override string ToString()
+            {
+                return ClockTime.ToString();
+            }
         }
     }
 }
