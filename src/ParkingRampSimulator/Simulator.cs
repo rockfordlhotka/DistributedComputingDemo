@@ -15,7 +15,7 @@ namespace ParkingRampSimulator
         public static Notifier Notifier { get; private set; }
 
         private AutoGenerator Generator = new AutoGenerator();
-        private int _frequency = 500; // ms between simulation runs
+        private int _frequency = 50; // ms between simulation runs
         public static TimeSpan Interval { get; private set; }
 
         static Simulator()
