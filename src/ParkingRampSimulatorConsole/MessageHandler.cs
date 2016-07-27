@@ -13,7 +13,7 @@ namespace ParkingRampSimulatorConsole
         {
             var text = message.ToString();
             if (!string.IsNullOrWhiteSpace(text))
-                Console.WriteLine(typeof(M).Name + ": " + message.ToString());
+                Console.WriteLine(typeof(M).Name + ": " + text);
         }
     }
 }
