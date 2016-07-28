@@ -19,6 +19,11 @@ namespace ParkingRampSimulator
             get { return 0; }
         }
 
+        public virtual int TotalLocations
+        {
+            get { return 0; }
+        }
+
         public ParkingConstruct(ParkingConstruct parent, string name)
         {
             Parent = parent;
@@ -54,13 +59,7 @@ namespace ParkingRampSimulator
 
             public override string ToString()
             {
-                //if (Construct.InQueueLength == 0 && 
-                //    Construct.OutQueueLength == 0  && 
-                //    Construct.OpenLocations > 0 &&
-                //    !Construct.IsFull)
-                //    return string.Empty;
-                if (Construct.Name.Length > 0) return string.Empty;
-                return string.Format("{0} - Open: {4}, In: {1}, Out: {2}, Full: {3}", Construct.Name, Construct.InQueueLength, Construct.OutQueueLength, Construct.IsFull, Construct.OpenLocations);
+                return string.Format("{0} - Open: {4}/{5}, In: {1}, Out: {2}, Full: {3}", Construct.Name, Construct.InQueueLength, Construct.OutQueueLength, Construct.IsFull, Construct.OpenLocations, Construct.TotalLocations);
             }
         }
     }

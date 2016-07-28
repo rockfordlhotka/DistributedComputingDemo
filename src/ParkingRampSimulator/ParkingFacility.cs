@@ -32,6 +32,14 @@ namespace ParkingRampSimulator
             }
         }
 
+        public override int TotalLocations
+        {
+            get
+            {
+                return ParkingRamps.Sum(r => r.TotalLocations);
+            }
+        }
+
         public void AutoArrives(Auto auto)
         {
             Simulator.Notifier.Notify(new AutoArrivingAtFacility { Auto = auto });

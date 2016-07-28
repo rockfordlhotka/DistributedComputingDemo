@@ -19,6 +19,11 @@ namespace ParkingRampSimulator
             get { return ParkingLocations.Count(r => !r.IsFull) - InQueue.Count; }
         }
 
+        public override int TotalLocations
+        {
+            get { return ParkingLocations.Count; }
+        }
+
         public ParkingFloor(ParkingConstruct parent, string name, int locationCount)
             : base(parent, name)
         {

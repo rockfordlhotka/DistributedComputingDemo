@@ -22,6 +22,15 @@ namespace ParkingRampSimulator
             }
         }
 
+
+        public override int TotalLocations
+        {
+            get
+            {
+                return Floors.Sum(r => r.TotalLocations);
+            }
+        }
+
         public ParkingRamp(ParkingConstruct parent, string name, int floorCount, int locationCount)
             : base(parent, name)
         {
