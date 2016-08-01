@@ -12,7 +12,7 @@ namespace ParkingRampSimulatorConsole
 {
     public class AzureMessageHandler<M> : ISubscriber<M>
     {
-        static string ConnectionString = @"";
+        static string ConnectionString = Config.GetQueueConnectionString();
         static string QueueName = "eventstream";
 
         public void HandleMessage(M message)
@@ -27,10 +27,12 @@ namespace ParkingRampSimulatorConsole
                         using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
                         {
                             JsonSerializer ser = new JsonSerializer();
+                            ser.TypeNameHandling = TypeNameHandling.All;
                             ser.Serialize(jsonWriter, message);
                             jsonWriter.Flush();
                             buffer.Position = 0;
-                            var outMessage = new BrokeredMessage(buffer);
+                            var outMessage = new BrokeredMessage(buffer.ToArray());
+                            //outMessage.ContentType = typeof(M).AssemblyQualifiedName;
                             client.Send(outMessage);
                         }
                     }
