@@ -19,46 +19,75 @@ namespace ParkingRampSimulatorConsole
         {
             if (!string.IsNullOrWhiteSpace(message.ToString()))
             {
-                var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
-                using (var buffer = new MemoryStream())
+                WriteToQueue(message);
+                WriteToAllEvents(message);
+                var csm = message as ParkingConstruct.ConstructStatusMessage;
+                if (csm != null && csm.Construct.Name.Length == 0)
+                    WriteToFacilityEvents(message);
+            }
+        }
+
+        private void WriteToFacilityEvents(M message)
+        {
+            var client = TopicClient.CreateFromConnectionString(ConnectionString, "facilityevents");
+            using (var buffer = new MemoryStream())
+            {
+                using (StreamWriter writer = new StreamWriter(buffer))
                 {
-                    using (StreamWriter writer = new StreamWriter(buffer))
+                    using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
                     {
-                        using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
-                        {
-                            JsonSerializer ser = new JsonSerializer();
-                            ser.TypeNameHandling = TypeNameHandling.All;
-                            ser.Serialize(jsonWriter, message);
-                            jsonWriter.Flush();
-                            buffer.Position = 0;
-                            var outMessage = new BrokeredMessage(buffer.ToArray());
-                            //outMessage.ContentType = typeof(M).AssemblyQualifiedName;
-                            client.Send(outMessage);
-                        }
+                        JsonSerializer ser = new JsonSerializer();
+                        ser.TypeNameHandling = TypeNameHandling.All;
+                        ser.Serialize(jsonWriter, message);
+                        jsonWriter.Flush();
+                        buffer.Position = 0;
+                        var outMessage = new BrokeredMessage(buffer.ToArray());
+                        client.Send(outMessage);
                     }
                 }
             }
         }
 
-        //private static void Serialize(object value, Stream s)
-        //{
-        //    using (StreamWriter writer = new StreamWriter(s))
-        //        using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
-        //        {
-        //            JsonSerializer ser = new JsonSerializer();
-        //            ser.Serialize(jsonWriter, value);
-        //            jsonWriter.Flush();
-        //        }
-        //}
+        private void WriteToAllEvents(M message)
+        {
+            var client = TopicClient.CreateFromConnectionString(ConnectionString, "allevents");
+            using (var buffer = new MemoryStream())
+            {
+                using (StreamWriter writer = new StreamWriter(buffer))
+                {
+                    using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
+                    {
+                        JsonSerializer ser = new JsonSerializer();
+                        ser.TypeNameHandling = TypeNameHandling.All;
+                        ser.Serialize(jsonWriter, message);
+                        jsonWriter.Flush();
+                        buffer.Position = 0;
+                        var outMessage = new BrokeredMessage(buffer.ToArray());
+                        client.Send(outMessage);
+                    }
+                }
+            }
+        }
 
-        //private static T Deserialize<T>(Stream s)
-        //{
-        //    using (StreamReader reader = new StreamReader(s))
-        //        using (JsonTextReader jsonReader = new JsonTextReader(reader))
-        //        {
-        //            JsonSerializer ser = new JsonSerializer();
-        //            return ser.Deserialize<T>(jsonReader);
-        //        }
-        //}
+        private static void WriteToQueue(M message)
+        {
+            var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
+            using (var buffer = new MemoryStream())
+            {
+                using (StreamWriter writer = new StreamWriter(buffer))
+                {
+                    using (JsonTextWriter jsonWriter = new JsonTextWriter(writer))
+                    {
+                        JsonSerializer ser = new JsonSerializer();
+                        ser.TypeNameHandling = TypeNameHandling.All;
+                        ser.Serialize(jsonWriter, message);
+                        jsonWriter.Flush();
+                        buffer.Position = 0;
+                        var outMessage = new BrokeredMessage(buffer.ToArray());
+                        client.Send(outMessage);
+                    }
+                }
+            }
+        }
     }
 }

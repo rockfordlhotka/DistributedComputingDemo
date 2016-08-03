@@ -13,15 +13,20 @@ namespace MessageProcessor
     {
         static string ConnectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
         static string QueueName = "eventstream";
+        static TimeSpan waitTime = new TimeSpan(100);
 
         public object LastResult { get; private set; }
 
         public BrokeredMessage RecieveNextMessage()
         {
             var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
-            var message = client.Receive();
-            var raw = message.GetBody<byte[]>();
-            LastResult = Deserialize(raw);
+            var message = client.Receive(waitTime);
+            if (message != null)
+            {
+                var raw = message.GetBody<byte[]>();
+                LastResult = Deserialize(raw);
+                message.Complete();
+            }
             return message;
         }
 
