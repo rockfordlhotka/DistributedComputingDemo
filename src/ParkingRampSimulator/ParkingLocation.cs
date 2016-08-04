@@ -21,7 +21,7 @@ namespace ParkingRampSimulator
         public void ParkAuto(Auto auto)
         {
             Occupant = auto;
-            Simulator.Notifier.Notify(new AutoParkedMessage { Auto = auto, Location = this });
+            Simulator.Notifier.Notify(new AutoParked { Auto = auto, Location = this });
         }
 
         public Auto AutoDeparts()
@@ -29,12 +29,12 @@ namespace ParkingRampSimulator
             if (Occupant == null)
                 throw new InvalidOperationException();
             var result = Occupant;
-            Simulator.Notifier.Notify(new AutoDepartedMessage { Auto = Occupant, Location = this });
+            Simulator.Notifier.Notify(new AutoDeparted { Auto = Occupant, Location = this });
             Occupant = null;
             return result;
         }
 
-        public class AutoParkedMessage
+        public class AutoParked
         {
             public Auto Auto { get; set; }
             public ParkingLocation Location { get; set; }
@@ -45,7 +45,7 @@ namespace ParkingRampSimulator
             }
         }
 
-        public class AutoDepartedMessage
+        public class AutoDeparted
         {
             public Auto Auto { get; set; }
             public ParkingLocation Location { get; set; }

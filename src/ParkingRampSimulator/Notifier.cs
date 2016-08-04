@@ -52,12 +52,12 @@ namespace ParkingRampSimulator
                 }
                 catch (Exception ex)
                 {
-                    Notify(new NotificationExceptionMessage { Exception = ex });
+                    Notify(new NotificationException { Exception = ex });
                 }
             }
         }
 
-        public class NotificationExceptionMessage
+        public class NotificationException
         {
             public Exception Exception { get; set; }
 

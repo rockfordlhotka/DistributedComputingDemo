@@ -17,13 +17,8 @@ namespace MessageProcessor
             {
                 message = reader.RecieveNextMessage();
                 if (message != null)
-                {
-                    //Console.WriteLine(message.ToString());
-                    Console.WriteLine(reader.LastResult.ToString());
-                }
-            } while (message != null);
-            Console.WriteLine("Processing complete");
-            Console.ReadKey();
+                    Console.WriteLine(reader.LastResult.GetType().Name + ": " + reader.LastResult.ToString());
+            } while (true);
         }
     }
 }

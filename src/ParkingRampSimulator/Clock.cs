@@ -19,10 +19,10 @@ namespace ParkingRampSimulator
         public void Tick()
         {
             Now = Now.Add(_interval);
-            Simulator.Notifier.Notify(new ClockTickMessage { ClockTime = Now });
+            Simulator.Notifier.Notify(new ClockTick { ClockTime = Now });
         }
 
-        public class ClockTickMessage
+        public class ClockTick
         {
             public DateTime ClockTime { get; set; }
 

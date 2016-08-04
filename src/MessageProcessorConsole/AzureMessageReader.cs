@@ -13,7 +13,7 @@ namespace MessageProcessor
     {
         static string ConnectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
         static string QueueName = "eventstream";
-        static TimeSpan waitTime = new TimeSpan(1000);
+        static TimeSpan waitTime = new TimeSpan(10000);
 
         public object LastResult { get; private set; }
 
@@ -24,8 +24,16 @@ namespace MessageProcessor
             if (message != null)
             {
                 var raw = message.GetBody<byte[]>();
-                LastResult = Deserialize(raw);
-                message.Complete();
+                try
+                {
+                    LastResult = Deserialize(raw);
+                    message.Complete();
+                }
+                catch (Exception ex)
+                {
+                    LastResult = ex;
+                    message.DeadLetter();
+                }
             }
             return message;
         }

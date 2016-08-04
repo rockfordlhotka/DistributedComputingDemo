@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingRampSimulatorTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessorConsole", "MessageProcessorConsole\MessageProcessorConsole.csproj", "{C60D31CB-D155-4192-A056-BD164D2E4551}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingRampSimulator.Messages", "ParkingRampSimulator.Messages\ParkingRampSimulator.Messages.csproj", "{826150F5-2634-4C6F-AAF9-446493B19DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C60D31CB-D155-4192-A056-BD164D2E4551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60D31CB-D155-4192-A056-BD164D2E4551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60D31CB-D155-4192-A056-BD164D2E4551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{826150F5-2634-4C6F-AAF9-446493B19DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{826150F5-2634-4C6F-AAF9-446493B19DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{826150F5-2634-4C6F-AAF9-446493B19DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{826150F5-2634-4C6F-AAF9-446493B19DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

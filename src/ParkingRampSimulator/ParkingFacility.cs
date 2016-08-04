@@ -95,30 +95,48 @@ namespace ParkingRampSimulator
         public class AutoArrivingAtFacility
         {
             public Auto Auto { get; set; }
+            public DateTime EventTime { get; set; }
+
+            public AutoArrivingAtFacility()
+            {
+                EventTime = Simulator.Clock.Now;
+            }
 
             public override string ToString()
             {
-                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+                return Auto.LicensePlate + " at " + EventTime;
             }
         }
 
         public class AutoAbandoningFacility
         {
             public Auto Auto { get; set; }
+            public DateTime EventTime { get; set; }
+
+            public AutoAbandoningFacility()
+            {
+                EventTime = Simulator.Clock.Now;
+            }
 
             public override string ToString()
             {
-                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+                return Auto.LicensePlate + " at " + EventTime;
             }
         }
 
         public class AutoDepartingFacility
         {
             public Auto Auto { get; set; }
+            public DateTime EventTime { get; set; }
+
+            public AutoDepartingFacility()
+            {
+                EventTime = Simulator.Clock.Now;
+            }
 
             public override string ToString()
             {
-                return Auto.LicensePlate + " at " + Simulator.Clock.Now;
+                return Auto.LicensePlate + " at " + EventTime;
             }
         }
     }
