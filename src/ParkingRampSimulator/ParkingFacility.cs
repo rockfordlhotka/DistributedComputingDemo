@@ -8,6 +8,7 @@ namespace ParkingRampSimulator
 {
     public class ParkingFacility : ParkingConstruct
     {
+        [Newtonsoft.Json.JsonIgnore]
         public List<ParkingRamp> ParkingRamps { get; private set; }
 
         public ParkingFacility()

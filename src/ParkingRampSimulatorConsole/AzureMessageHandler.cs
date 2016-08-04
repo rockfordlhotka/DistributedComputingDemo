@@ -20,10 +20,10 @@ namespace ParkingRampSimulatorConsole
             if (!string.IsNullOrWhiteSpace(message.ToString()))
             {
                 WriteToQueue(message);
-                WriteToAllEvents(message);
-                var csm = message as ParkingConstruct.ConstructStatusMessage;
-                if (csm != null && csm.Construct.Name.Length == 0)
-                    WriteToFacilityEvents(message);
+                //WriteToAllEvents(message);
+                //var csm = message as ParkingConstruct.ConstructStatusMessage;
+                //if (csm != null && csm.Construct.Name.Length == 0)
+                //    WriteToFacilityEvents(message);
             }
         }
 
@@ -84,6 +84,7 @@ namespace ParkingRampSimulatorConsole
                         jsonWriter.Flush();
                         buffer.Position = 0;
                         var outMessage = new BrokeredMessage(buffer.ToArray());
+                        var length = buffer.Length;
                         client.Send(outMessage);
                     }
                 }
