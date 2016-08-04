@@ -8,6 +8,7 @@ namespace ParkingRampSimulator
 {
     public class ParkingRamp : ParkingConstruct
     {
+        [Newtonsoft.Json.JsonIgnore]
         public List<ParkingFloor> Floors { get; private set; }
         public override bool IsFull
         {

@@ -18,7 +18,7 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void ParkingLocationParkAuto()
         {
-            var handler = new MessageHandler<ParkingLocation.AutoParkedMessage>();
+            var handler = new MessageHandler<ParkingLocation.AutoParked>();
             Simulator.Notifier.Subscribe(handler);
             var location = new ParkingLocation("A");
             var auto = new Auto("", 0);
@@ -32,7 +32,7 @@ namespace ParkingRampSimulatorTests
         [TestMethod]
         public void ParkingLocationAutoDeparts()
         {
-            var handler = new MessageHandler<ParkingLocation.AutoDepartedMessage>();
+            var handler = new MessageHandler<ParkingLocation.AutoDeparted>();
             Simulator.Notifier.Subscribe(handler);
             var location = new ParkingLocation("A");
             var auto = new Auto("", 0);
@@ -48,7 +48,7 @@ namespace ParkingRampSimulatorTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParkingLocationNullAutoDeparts()
         {
-            var handler = new MessageHandler<ParkingLocation.AutoDepartedMessage>();
+            var handler = new MessageHandler<ParkingLocation.AutoDeparted>();
             Simulator.Notifier.Subscribe(handler);
             var location = new ParkingLocation("A");
             try

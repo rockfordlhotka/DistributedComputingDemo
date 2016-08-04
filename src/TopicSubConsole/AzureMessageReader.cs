@@ -7,19 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessageProcessor
+namespace TopicSubConsole
 {
     public class AzureMessageReader
     {
         static string ConnectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
-        static string QueueName = "eventstream";
+        static string TopicName = "facilityevents";
         static TimeSpan waitTime = new TimeSpan(10000);
 
         public object LastResult { get; private set; }
 
         public BrokeredMessage RecieveNextMessage()
         {
-            var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
+            var nsmgr = Microsoft.ServiceBus.NamespaceManager.CreateFromConnectionString(ConnectionString);
+            if (!nsmgr.SubscriptionExists(TopicName, "console"))
+                nsmgr.CreateSubscription(TopicName, "console");
+
+            var client = SubscriptionClient.CreateFromConnectionString(ConnectionString, TopicName, "console");
             var message = client.Receive(waitTime);
             if (message != null)
             {

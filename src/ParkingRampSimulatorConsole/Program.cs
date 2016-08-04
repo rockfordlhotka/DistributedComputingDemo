@@ -14,22 +14,23 @@ namespace ParkingRampSimulatorConsole
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingLocation.AutoParkedMessage>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingLocation.AutoDepartedMessage>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoArrivingAtFacility>());
-            Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoAbandoningFacility>());
+            //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoAbandoningFacility>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoDepartingFacility>());
             //Simulator.Notifier.Subscribe(new MessageHandler<Clock.ClockTickMessage>());
             Simulator.Notifier.Subscribe(new MessageHandler<ParkingConstruct.ConstructStatusMessage>());
             Simulator.Notifier.Subscribe(new MessageHandler<SimulatorStatus>());
+            Simulator.Notifier.Subscribe(new MessageHandler<Notifier.NotificationException>());
 
-            Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoParkedMessage>());
-            Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoDepartedMessage>());
+            Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoParked>());
+            Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoDeparted>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingFacility.AutoArrivingAtFacility>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingFacility.AutoAbandoningFacility>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingFacility.AutoDepartingFacility>());
-            Simulator.Notifier.Subscribe(new AzureMessageHandler<Clock.ClockTickMessage>());
+            Simulator.Notifier.Subscribe(new AzureMessageHandler<Clock.ClockTick>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingConstruct.ConstructStatusMessage>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<SimulatorStatus>());
 
-            Simulator.Clock.Now = new DateTime(2015, 7, 14, 5, 0, 0);
+            Simulator.Clock.Now = new DateTime(2015, 7, 13, 5, 0, 0);
 
             var simulator = new Simulator();
             Simulator.Notifier.Notify(new SimulatorStatus { Status = "Starting" });

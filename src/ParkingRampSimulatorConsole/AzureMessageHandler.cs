@@ -19,15 +19,16 @@ namespace ParkingRampSimulatorConsole
         {
             if (!string.IsNullOrWhiteSpace(message.ToString()))
             {
-                WriteToQueue(message);
-                WriteToAllEvents(message);
+                var outmessage = ConverterExtensions.ConvertToMessage(message);
+                WriteToQueue(outmessage);
+                WriteToAllEvents(outmessage);
                 var csm = message as ParkingConstruct.ConstructStatusMessage;
                 if (csm != null && csm.Construct.Name.Length == 0)
-                    WriteToFacilityEvents(message);
+                    WriteToFacilityEvents(outmessage);
             }
         }
 
-        private void WriteToFacilityEvents(M message)
+        private void WriteToFacilityEvents(object message)
         {
             var client = TopicClient.CreateFromConnectionString(ConnectionString, "facilityevents");
             using (var buffer = new MemoryStream())
@@ -48,7 +49,7 @@ namespace ParkingRampSimulatorConsole
             }
         }
 
-        private void WriteToAllEvents(M message)
+        private void WriteToAllEvents(object message)
         {
             var client = TopicClient.CreateFromConnectionString(ConnectionString, "allevents");
             using (var buffer = new MemoryStream())
@@ -69,7 +70,7 @@ namespace ParkingRampSimulatorConsole
             }
         }
 
-        private static void WriteToQueue(M message)
+        private static void WriteToQueue(object message)
         {
             var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
             using (var buffer = new MemoryStream())
@@ -84,10 +85,140 @@ namespace ParkingRampSimulatorConsole
                         jsonWriter.Flush();
                         buffer.Position = 0;
                         var outMessage = new BrokeredMessage(buffer.ToArray());
+                        var length = buffer.Length;
                         client.Send(outMessage);
                     }
                 }
             }
+        }
+    }
+
+    internal static class ConverterExtensions
+    {
+        public static object ConvertToMessage<M>(M message)
+        {
+            object result = null;
+            result = ConvertToMessage(message as ParkingConstruct.ConstructStatusMessage);
+            if (result != null) return result;
+            result = ConvertToMessage(message as Clock.ClockTick);
+            if (result != null) return result;
+            result = ConvertToMessage(message as Notifier.NotificationException);
+            if (result != null) return result;
+            result = ConvertToMessage(message as ParkingFacility.AutoAbandoningFacility);
+            if (result != null) return result;
+            result = ConvertToMessage(message as ParkingFacility.AutoArrivingAtFacility);
+            if (result != null) return result;
+            result = ConvertToMessage(message as ParkingFacility.AutoDepartingFacility);
+            if (result != null) return result;
+            result = ConvertToMessage(message as ParkingLocation.AutoDeparted);
+            if (result != null) return result;
+            result = ConvertToMessage(message as ParkingLocation.AutoParked);
+            if (result != null) return result;
+            result = ConvertToMessage(message as SimulatorStatus);
+            if (result != null) return result;
+
+            throw new InvalidOperationException("ConvertToMessage");
+        }
+
+        public static ParkingRampSimulator.Messages.ConstructStatusMessage ConvertToMessage(this ParkingRampSimulator.ParkingConstruct.ConstructStatusMessage source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.ConstructStatusMessage(Simulator.Clock.Now)
+            {
+                Name = source.Construct.Name,
+                TotalLocations = source.Construct.TotalLocations,
+                OpenLocations = source.Construct.OpenLocations,
+                InQueueLength = source.Construct.InQueueLength,
+                OutQueueLength = source.Construct.OutQueueLength
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.ClockTickMessage ConvertToMessage(this Clock.ClockTick source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.ClockTickMessage(Simulator.Clock.Now)
+            {
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.ExceptionMessage ConvertToMessage(this Notifier.NotificationException source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.ExceptionMessage(Simulator.Clock.Now)
+            {
+                Exception = source.Exception
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.AutoMovementMessage ConvertToMessage(this ParkingFacility.AutoAbandoningFacility source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.AutoMovementMessage(Simulator.Clock.Now)
+            {
+                LicensePlate=source.Auto.LicensePlate,
+                DepartureDate = source.Auto.DateToDepart,
+                Status = source.GetType().Name,
+                Location = string.Empty
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.AutoMovementMessage ConvertToMessage(this ParkingFacility.AutoArrivingAtFacility source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.AutoMovementMessage(Simulator.Clock.Now)
+            {
+                LicensePlate = source.Auto.LicensePlate,
+                DepartureDate = source.Auto.DateToDepart,
+                Status = source.GetType().Name,
+                Location = string.Empty
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.AutoMovementMessage ConvertToMessage(this ParkingFacility.AutoDepartingFacility source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.AutoMovementMessage(Simulator.Clock.Now)
+            {
+                LicensePlate = source.Auto.LicensePlate,
+                DepartureDate = source.Auto.DateToDepart,
+                Status = source.GetType().Name,
+                Location = string.Empty
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.AutoMovementMessage ConvertToMessage(this ParkingLocation.AutoDeparted source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.AutoMovementMessage(Simulator.Clock.Now)
+            {
+                LicensePlate = source.Auto.LicensePlate,
+                DepartureDate = source.Auto.DateToDepart,
+                Status = source.GetType().Name,
+                Location = source.Location.Name
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.AutoMovementMessage ConvertToMessage(this ParkingLocation.AutoParked source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.AutoMovementMessage(Simulator.Clock.Now)
+            {
+                LicensePlate = source.Auto.LicensePlate,
+                DepartureDate = source.Auto.DateToDepart,
+                Status = source.GetType().Name,
+                Location = source.Location.Name
+            };
+        }
+
+        public static ParkingRampSimulator.Messages.SimulatorStatusMessage ConvertToMessage(this SimulatorStatus source)
+        {
+            if (source == null) return null;
+            return new ParkingRampSimulator.Messages.SimulatorStatusMessage(Simulator.Clock.Now)
+            {
+                RealTime = source.RealTime,
+                ClockTime = source.SimulatorTime,
+                Status = source.Status
+            };
         }
     }
 }

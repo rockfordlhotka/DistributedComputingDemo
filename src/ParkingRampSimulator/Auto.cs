@@ -9,9 +9,11 @@ namespace ParkingRampSimulator
     public class Auto
     {
         private const long TicksInADay = 864000000000;
-        public string LicensePlate { get; private set; }
+        public string LicensePlate { get; set; }
         private DateTime _dateEntered;
-        public DateTime DateToDepart { get; private set; }
+        public DateTime DateToDepart { get; set; }
+
+        public Auto() { }
 
         public Auto(string licensePlate, double lengthOfTrip)
         {
