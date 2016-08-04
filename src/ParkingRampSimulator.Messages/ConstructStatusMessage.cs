@@ -20,8 +20,11 @@ namespace ParkingRampSimulator.Messages
 
         public override string ToString()
         {
+            var name = Name;
+            if (string.IsNullOrWhiteSpace(name))
+                name = "facility";
             return string.Format("{0}: Name: {1}, {2}/{3}, In: {4}, Out: {5}", 
-                TimeStamp, Name, OpenLocations, TotalLocations, InQueueLength, OutQueueLength);
+                TimeStamp, name, OpenLocations, TotalLocations, InQueueLength, OutQueueLength);
         }
     }
 }
