@@ -14,11 +14,12 @@ namespace ParkingRampSimulatorConsole
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingLocation.AutoParkedMessage>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingLocation.AutoDepartedMessage>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoArrivingAtFacility>());
-            Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoAbandoningFacility>());
+            //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoAbandoningFacility>());
             //Simulator.Notifier.Subscribe(new MessageHandler<ParkingFacility.AutoDepartingFacility>());
             //Simulator.Notifier.Subscribe(new MessageHandler<Clock.ClockTickMessage>());
             Simulator.Notifier.Subscribe(new MessageHandler<ParkingConstruct.ConstructStatusMessage>());
             Simulator.Notifier.Subscribe(new MessageHandler<SimulatorStatus>());
+            Simulator.Notifier.Subscribe(new MessageHandler<Notifier.NotificationExceptionMessage>());
 
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoParkedMessage>());
             Simulator.Notifier.Subscribe(new AzureMessageHandler<ParkingLocation.AutoDepartedMessage>());

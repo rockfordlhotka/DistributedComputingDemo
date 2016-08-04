@@ -45,7 +45,26 @@ namespace ParkingRampSimulator
         {
             var subs = _subscriptions.Where(r => r.SubscriptionType.Equals(typeof(M)));
             foreach (var item in subs.ToList())
-                ((ISubscriber<M>)item.Subscriber).HandleMessage(message);
+            {
+                try
+                {
+                    ((ISubscriber<M>)item.Subscriber).HandleMessage(message);
+                }
+                catch (Exception ex)
+                {
+                    Notify(new NotificationExceptionMessage { Exception = ex });
+                }
+            }
+        }
+
+        public class NotificationExceptionMessage
+        {
+            public Exception Exception { get; set; }
+
+            public override string ToString()
+            {
+                return Exception.ToString();
+            }
         }
     }
 

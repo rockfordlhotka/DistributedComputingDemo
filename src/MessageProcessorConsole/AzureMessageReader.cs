@@ -13,7 +13,7 @@ namespace MessageProcessor
     {
         static string ConnectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
         static string QueueName = "eventstream";
-        static TimeSpan waitTime = new TimeSpan(100);
+        static TimeSpan waitTime = new TimeSpan(1000);
 
         public object LastResult { get; private set; }
 
