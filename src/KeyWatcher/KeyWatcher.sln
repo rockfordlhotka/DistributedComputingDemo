@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher", "KeyWatcher\KeyWatcher.csproj", "{C2DB4961-6B87-4D78-A88D-59E4EF212F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Host", "KeyWatcher.Host\KeyWatcher.Host.csproj", "{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Listener", "KeyWatcher.Listener\KeyWatcher.Listener.csproj", "{6353130F-AC79-421B-8797-3919D5AA6824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Actors", "KeyWatcher.Actors\KeyWatcher.Actors.csproj", "{C2A64453-8055-4EF3-8EB6-32401214083E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6353130F-AC79-421B-8797-3919D5AA6824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6353130F-AC79-421B-8797-3919D5AA6824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6353130F-AC79-421B-8797-3919D5AA6824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6353130F-AC79-421B-8797-3919D5AA6824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A64453-8055-4EF3-8EB6-32401214083E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A64453-8055-4EF3-8EB6-32401214083E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
