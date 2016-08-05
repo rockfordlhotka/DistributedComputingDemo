@@ -47,7 +47,6 @@
     <Compile Include="Auto.cs" />
     <Compile Include="AutoGenerator.cs" />
     <Compile Include="Clock.cs" />
-    <Compile Include="Config.cs" />
     <Compile Include="DMV.cs" />
     <Compile Include="ParkingFloor.cs" />
     <Compile Include="Notifier.cs" />

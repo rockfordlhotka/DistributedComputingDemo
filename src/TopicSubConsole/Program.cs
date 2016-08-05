@@ -17,7 +17,10 @@ namespace TopicSubConsole
             {
                 message = reader.RecieveNextMessage();
                 if (message != null)
+                {
                     Console.WriteLine(reader.LastResult.GetType().Name + ": " + reader.LastResult.ToString());
+                    AzureStorageWriter.WriteToStorage((ParkingRampSimulator.Messages.ConstructStatusMessage)reader.LastResult);
+                }
             } while (true);
         }
     }

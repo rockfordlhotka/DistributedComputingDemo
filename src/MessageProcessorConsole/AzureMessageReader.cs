@@ -11,15 +11,15 @@ namespace MessageProcessor
 {
     public class AzureMessageReader
     {
-        static string ConnectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
-        static string QueueName = "eventstream";
+        static string connectionString = ParkingRampSimulator.Config.GetQueueConnectionString();
+        static string queueName = "eventstream";
         static TimeSpan waitTime = new TimeSpan(10000);
 
         public object LastResult { get; private set; }
 
         public BrokeredMessage RecieveNextMessage()
         {
-            var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
+            var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
             var message = client.Receive(waitTime);
             if (message != null)
             {

@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ParkingRampSimulator.Config\ParkingRampSimulator.Config.csproj">
+      <Project>{9682a8be-7907-4456-afd4-d6f5fbb8fd35}</Project>
+      <Name>ParkingRampSimulator.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParkingRampSimulator.Messages\ParkingRampSimulator.Messages.csproj">
       <Project>{826150f5-2634-4c6f-aaf9-446493b19db2}</Project>
       <Name>ParkingRampSimulator.Messages</Name>

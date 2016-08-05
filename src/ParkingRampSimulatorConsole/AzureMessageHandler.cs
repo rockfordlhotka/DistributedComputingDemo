@@ -12,8 +12,8 @@ namespace ParkingRampSimulatorConsole
 {
     public class AzureMessageHandler<M> : ISubscriber<M>
     {
-        static string ConnectionString = Config.GetQueueConnectionString();
-        static string QueueName = "eventstream";
+        static string connectionString = Config.GetQueueConnectionString();
+        static string queueName = "eventstream";
 
         public void HandleMessage(M message)
         {
@@ -30,7 +30,7 @@ namespace ParkingRampSimulatorConsole
 
         private void WriteToFacilityEvents(object message)
         {
-            var client = TopicClient.CreateFromConnectionString(ConnectionString, "facilityevents");
+            var client = TopicClient.CreateFromConnectionString(connectionString, "facilityevents");
             using (var buffer = new MemoryStream())
             {
                 using (StreamWriter writer = new StreamWriter(buffer))
@@ -51,7 +51,7 @@ namespace ParkingRampSimulatorConsole
 
         private void WriteToAllEvents(object message)
         {
-            var client = TopicClient.CreateFromConnectionString(ConnectionString, "allevents");
+            var client = TopicClient.CreateFromConnectionString(connectionString, "allevents");
             using (var buffer = new MemoryStream())
             {
                 using (StreamWriter writer = new StreamWriter(buffer))
@@ -72,7 +72,7 @@ namespace ParkingRampSimulatorConsole
 
         private static void WriteToQueue(object message)
         {
-            var client = QueueClient.CreateFromConnectionString(ConnectionString, QueueName);
+            var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
             using (var buffer = new MemoryStream())
             {
                 using (StreamWriter writer = new StreamWriter(buffer))
