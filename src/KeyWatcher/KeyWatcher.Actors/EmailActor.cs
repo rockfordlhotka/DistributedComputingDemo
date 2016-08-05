@@ -1,12 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Akka.Actor;
+using KeyWatcher.Actors.Messages;
+using KeyWatcher.Dependencies;
 
 namespace KeyWatcher.Actors
 {
-	class EmailActor
+	public sealed class EmailActor
+		: TypedActor, IHandle<UserBadWords>
 	{
+		private readonly IEmail email;
+
+		public EmailActor(IEmail email)
+		{
+			if (email == null)
+			{
+				throw new ArgumentNullException(nameof(email));
+			}
+
+			this.email = email;
+		}
+
+		public void Handle(UserBadWords message)
+		{
+			this.email.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
+				$"The user {message.User} typed the following bad words: {string.Join(", ", message.BadWords)}")
+				.PipeTo(this.Self);
+		}
 	}
 }

@@ -1,6 +1,10 @@
 ﻿using Akka.Actor;
 using Akka.Configuration;
+using Akka.DI.AutoFac;
+using Akka.DI.Core;
+using Autofac;
 using KeyWatcher.Actors;
+using KeyWatcher.Dependencies;
 using System;
 
 namespace KeyWatcher.Listener
@@ -22,10 +26,16 @@ akka {
         }
     }
 }");
+			var builder = new ContainerBuilder();
+			builder.RegisterModule<DependenciesModule>();
+			builder.RegisterModule<ActorsModule>();
+			var container = builder.Build();
 
-			using (var userSystem = ActorSystem.Create("UserSystem", config))
+			using (var system = ActorSystem.Create("UserSystem", config))
 			{
-				userSystem.ActorOf<UserActor>("user");
+				var propsResolver = new AutoFacDependencyResolver(container, system);
+
+				system.ActorOf(system.DI().Props<UserActor>(), "user");
 				Console.WriteLine("User actor hosted.");
 				Console.ReadKey();
 			}

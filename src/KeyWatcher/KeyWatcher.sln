@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Listener", "KeyW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Actors", "KeyWatcher.Actors\KeyWatcher.Actors.csproj", "{C2A64453-8055-4EF3-8EB6-32401214083E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{C0F0AE62-0140-4C76-A658-2777502E936E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C2A64453-8055-4EF3-8EB6-32401214083E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F0AE62-0140-4C76-A658-2777502E936E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F0AE62-0140-4C76-A658-2777502E936E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F0AE62-0140-4C76-A658-2777502E936E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F0AE62-0140-4C76-A658-2777502E936E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

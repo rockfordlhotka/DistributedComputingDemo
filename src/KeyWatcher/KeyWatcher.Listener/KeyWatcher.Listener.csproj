@@ -37,8 +37,20 @@
       <HintPath>..\packages\Akka.1.1.1\lib\net45\Akka.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Akka.DI.AutoFac, Version=1.0.8.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Akka.DI.AutoFac.1.0.8\lib\net45\Akka.DI.AutoFac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Akka.DI.Core, Version=1.0.8.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Akka.DI.Core.1.0.8\lib\net45\Akka.DI.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Akka.Remote, Version=1.1.1.27, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Akka.Remote.1.1.1\lib\net45\Akka.Remote.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Google.ProtocolBuffers, Version=2.4.1.555, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
@@ -82,6 +94,10 @@
     <ProjectReference Include="..\KeyWatcher.Actors\KeyWatcher.Actors.csproj">
       <Project>{c2a64453-8055-4ef3-8eb6-32401214083e}</Project>
       <Name>KeyWatcher.Actors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj">
+      <Project>{c0f0ae62-0140-4c76-a658-2777502e936e}</Project>
+      <Name>KeyWatcher.Dependencies</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
