@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using ParkingRampSimulator.Entities;
 using ParkingRampSimulator.Messages;
 using System;
 using System.Collections.Generic;
@@ -42,23 +43,5 @@ namespace TopicSubConsole
             else
                 Console.WriteLine("FAILED TO READ DATA");
         }
-    }
-
-    public class ConstructStatusEntity : TableEntity
-    {
-        public ConstructStatusEntity()
-        { }
-
-        public ConstructStatusEntity(string name)
-        {
-            PartitionKey = "1";
-            RowKey = name;
-        }
-
-        public DateTime TimeStamp { get; set; }
-        public int TotalLocations { get; set; }
-        public int OpenLocations { get; set; }
-        public int InQueueLength { get; set; }
-        public int OutQueueLength { get; set; }
     }
 }
