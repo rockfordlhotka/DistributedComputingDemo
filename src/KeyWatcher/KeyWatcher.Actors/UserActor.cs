@@ -46,5 +46,15 @@ namespace KeyWatcher.Actors
 				email.Tell(new UserBadWords(message.User, foundBadWords.ToImmutableArray()));
 			}
 		}
+
+		protected override void PreStart()
+		{
+			this.logger.LogAsync($"{nameof(UserActor)}.{nameof(this.PreStart)}");
+		}
+
+		protected override void PostStop()
+		{
+			this.logger.LogAsync($"{nameof(UserActor)}.{nameof(this.PostStop)}");
+		}
 	}
 }

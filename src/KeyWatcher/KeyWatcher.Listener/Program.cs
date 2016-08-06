@@ -31,9 +31,9 @@ akka {
 			builder.RegisterModule<ActorsModule>();
 			var container = builder.Build();
 
-			using (var system = ActorSystem.Create("UserSystem", config))
+			using (var system = ActorSystem.Create("KeyWatcherListener", config))
 			{
-				var propsResolver = new AutoFacDependencyResolver(container, system);
+				new AutoFacDependencyResolver(container, system);
 
 				system.ActorOf(system.DI().Props<UserActor>(), "user");
 				Console.WriteLine("User actor hosted.");

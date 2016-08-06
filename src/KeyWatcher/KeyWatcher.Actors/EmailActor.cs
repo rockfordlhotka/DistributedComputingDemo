@@ -8,9 +8,9 @@ namespace KeyWatcher.Actors
 	public sealed class EmailActor
 		: TypedActor, IHandle<UserBadWords>
 	{
-		private readonly IEmail email;
+		private readonly INotification email;
 
-		public EmailActor(IEmail email)
+		public EmailActor(INotification email)
 		{
 			if (email == null)
 			{

@@ -2,7 +2,7 @@
 
 namespace KeyWatcher.Dependencies
 {
-	public interface IEmail
+	public interface INotification
 	{
 		Task SendAsync(string recipient, string title, string message);
 	}
