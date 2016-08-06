@@ -19,10 +19,10 @@ namespace KeyWatcher.SignaledListener
 		{
 			using (WebApp.Start(Program.SignalRHubUrl))
 			{
-				var hubContext = GlobalHost.ConnectionManager.GetHubContext<KeyWatcherHub>();
+				var hub = GlobalHost.ConnectionManager.GetHubContext<KeyWatcherHub>();
 
 				var builder = new ContainerBuilder();
-				builder.RegisterModule<DependenciesModule>();
+				builder.RegisterModule(new DependenciesModule(hub));
 				builder.RegisterModule<ActorsModule>();
 				var container = builder.Build();
 
