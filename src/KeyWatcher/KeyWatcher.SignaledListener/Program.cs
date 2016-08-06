@@ -40,7 +40,7 @@ akka {
     }
 }");
 
-				using (var system = ActorSystem.Create("KeyWatcherSignaledListener", config))
+				using (var system = ActorSystem.Create("KeyWatcherListener", config))
 				{
 					new AutoFacDependencyResolver(container, system);
 
