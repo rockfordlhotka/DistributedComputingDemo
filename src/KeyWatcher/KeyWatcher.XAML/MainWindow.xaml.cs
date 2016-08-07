@@ -1,38 +1,46 @@
 ﻿using KeyWatcher.Messages;
 using Microsoft.AspNet.SignalR.Client;
 using System;
-using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Windows;
+using KeyWatcher.XAML.Extensions;
 
 namespace KeyWatcher.XAML
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private HubConnection connection;
+		private IHubProxy proxy;
+		private IDisposable resultsSubscription;
+
 		public MainWindow()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 
-		private async void button_Click(object sender, RoutedEventArgs e)
+		protected override void OnClosed(EventArgs e)
 		{
-			var connection = new HubConnection("http://localhost:5944");
-			var proxy = connection.CreateHubProxy("KeyWatcherHub");
-			await connection.Start();
+			this.resultsSubscription.SafeDispose();
+			this.connection.Stop();
+			base.OnClosed(e);
+		}
 
-			var observable = from item in proxy.Observe("NotificationSent")
-								  let m = item[0].ToObject<SignalRNotificationMessage>()
-								  select m;
-			var resultsSubscription = observable
+		private async void OnStartListeningClick(object sender, RoutedEventArgs e)
+		{
+			this.connection = new HubConnection("http://localhost:5944");
+			this.proxy = this.connection.CreateHubProxy("KeyWatcherHub");
+			await this.connection.Start();
+
+			this.resultsSubscription = this.proxy
+				.ObserveAs<SignalRNotificationMessage>("NotificationSent")
 				.ObserveOn(SynchronizationContext.Current)
 				.Subscribe(message =>
 				{
-					this.listBox.Items.Add(message.Message);
+					this.notifications.Items.Add(message.Message);
 				});
+
+			this.startListening.IsEnabled = false;
 		}
 	}
 }

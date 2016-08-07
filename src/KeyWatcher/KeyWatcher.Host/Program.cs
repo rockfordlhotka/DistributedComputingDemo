@@ -13,6 +13,8 @@ namespace KeyWatcher.Host
 {
 	class Program
 	{
+		private const ushort BufferSize = 20;
+
 		static void Main(string[] args)
 		{
 			//Program.UseSimpleKeyWatcher();
@@ -23,7 +25,7 @@ namespace KeyWatcher.Host
 
 		private static void UseBufferedKeyWatcher()
 		{
-			using (var keyLogger = new BufferedKeyWatcher(10))
+			using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 			{
 				keyLogger.KeysLogged += (s, e) => Console.WriteLine(e.Keys);
 				Application.Run();
@@ -54,7 +56,7 @@ namespace KeyWatcher.Host
 
 				var user = system.ActorOf(system.DI().Props<UserActor>(), "user");
 
-				using (var keyLogger = new BufferedKeyWatcher(10))
+				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
@@ -89,7 +91,7 @@ akka {
 				var user = system
 					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:8080/user/user");
 
-				using (var keyLogger = new BufferedKeyWatcher(10))
+				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
