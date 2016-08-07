@@ -1,4 +1,4 @@
-﻿namespace KeyWatcher.Dependencies
+﻿namespace KeyWatcher.Messages
 {
 	public sealed class SignalRNotificationMessage
 	{

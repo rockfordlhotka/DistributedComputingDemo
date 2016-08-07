@@ -3,7 +3,7 @@ using Owin;
 
 namespace KeyWatcher.SignaledListener
 {
-	public sealed class Startup
+	public class Startup
 	{
 		public void Configuration(IAppBuilder app)
 		{

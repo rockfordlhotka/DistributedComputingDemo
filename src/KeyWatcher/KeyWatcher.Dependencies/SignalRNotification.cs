@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using KeyWatcher.Messages;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace KeyWatcher.Dependencies
 
 		public Task SendAsync(string recipient, string title, string message)
 		{
+			Console.Out.WriteLine("About to SignalR...");
 			this.hub.Clients.All.NotificationSent(
 				new SignalRNotificationMessage(recipient, title, message));
 			return Task.CompletedTask;

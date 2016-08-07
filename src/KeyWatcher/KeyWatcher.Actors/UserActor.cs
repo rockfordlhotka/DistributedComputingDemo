@@ -1,7 +1,7 @@
 ﻿using Akka.Actor;
 using Akka.DI.Core;
-using KeyWatcher.Actors.Messages;
 using KeyWatcher.Dependencies;
+using KeyWatcher.Messages;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -9,7 +9,7 @@ using System.Collections.Immutable;
 namespace KeyWatcher.Actors
 {
 	public sealed class UserActor
-		: TypedActor, IHandle<UserKeys>
+		: TypedActor, IHandle<UserKeysMessage>
 	{
 		private static readonly string[] BadWords = { "cotton", "headed", "ninny", "muggins" };
 		private readonly ILogger logger;
@@ -24,7 +24,7 @@ namespace KeyWatcher.Actors
 			this.logger = logger;
 		}
 
-		public void Handle(UserKeys message)
+		public void Handle(UserKeysMessage message)
 		{
 			var keys = new string(message.Keys).ToLower();
 			this.logger.LogAsync($"Received message from {message.User}: {keys}")
@@ -43,7 +43,7 @@ namespace KeyWatcher.Actors
 			if(foundBadWords.Count > 0)
 			{
 				var email = Context.ActorOf(Context.DI().Props<EmailActor>());
-				email.Tell(new UserBadWords(message.User, foundBadWords.ToImmutableArray()));
+				email.Tell(new UserBadWordsMessage(message.User, foundBadWords.ToImmutableArray()));
 			}
 		}
 

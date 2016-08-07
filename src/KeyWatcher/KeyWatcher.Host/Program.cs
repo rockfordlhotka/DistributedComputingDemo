@@ -4,8 +4,8 @@ using Akka.DI.AutoFac;
 using Akka.DI.Core;
 using Autofac;
 using KeyWatcher.Actors;
-using KeyWatcher.Actors.Messages;
 using KeyWatcher.Dependencies;
+using KeyWatcher.Messages;
 using System;
 using System.Windows.Forms;
 
@@ -58,7 +58,7 @@ namespace KeyWatcher.Host
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						user.Tell(new UserKeys(userName, e.Keys));
+						user.Tell(new UserKeysMessage(userName, e.Keys));
 					};
 
 					Application.Run();
@@ -93,7 +93,7 @@ akka {
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						user.Tell(new UserKeys(userName, e.Keys));
+						user.Tell(new UserKeysMessage(userName, e.Keys));
 					};
 
 					Application.Run();

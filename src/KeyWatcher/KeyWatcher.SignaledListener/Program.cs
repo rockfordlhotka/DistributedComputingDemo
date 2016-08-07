@@ -13,7 +13,7 @@ namespace KeyWatcher.SignaledListener
 {
 	class Program
 	{
-		public const string SignalRHubUrl = "http://localhost:8181";
+		public const string SignalRHubUrl = "http://localhost:5944";
 
 		static void Main(string[] args)
 		{

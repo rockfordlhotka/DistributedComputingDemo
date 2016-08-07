@@ -71,10 +71,15 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalRNotification.cs" />
-    <Compile Include="SignalRNotificationMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeyWatcher.Messages\KeyWatcher.Messages.csproj">
+      <Project>{6148D120-E0D1-4E81-B9A0-1DF13757F150}</Project>
+      <Name>KeyWatcher.Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

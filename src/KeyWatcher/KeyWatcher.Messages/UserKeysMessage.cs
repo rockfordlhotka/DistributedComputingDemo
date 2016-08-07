@@ -1,8 +1,8 @@
-﻿namespace KeyWatcher.Actors.Messages
+﻿namespace KeyWatcher.Messages
 {
-	public sealed class UserKeys
+	public sealed class UserKeysMessage
 	{
-		public UserKeys(string user, char[] keys)
+		public UserKeysMessage(string user, char[] keys)
 		{
 			this.User = user;
 			this.Keys = keys;

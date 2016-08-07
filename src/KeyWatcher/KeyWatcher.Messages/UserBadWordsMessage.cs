@@ -1,10 +1,10 @@
 ﻿using System.Collections.Immutable;
 
-namespace KeyWatcher.Actors.Messages
+namespace KeyWatcher.Messages
 {
-	public sealed class UserBadWords
+	public sealed class UserBadWordsMessage
 	{
-		public UserBadWords(string user, ImmutableArray<string> badWords)
+		public UserBadWordsMessage(string user, ImmutableArray<string> badWords)
 		{
 			this.User = user;
 			this.BadWords = badWords;

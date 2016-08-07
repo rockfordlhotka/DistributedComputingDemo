@@ -100,6 +100,10 @@
       <Project>{C0F0AE62-0140-4C76-A658-2777502E936E}</Project>
       <Name>KeyWatcher.Dependencies</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KeyWatcher.Messages\KeyWatcher.Messages.csproj">
+      <Project>{6148D120-E0D1-4E81-B9A0-1DF13757F150}</Project>
+      <Name>KeyWatcher.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeyWatcher\KeyWatcher.csproj">
       <Project>{c2db4961-6b87-4d78-a88d-59e4ef212f99}</Project>
       <Name>KeyWatcher</Name>

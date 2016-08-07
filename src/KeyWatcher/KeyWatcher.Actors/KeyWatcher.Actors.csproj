@@ -66,8 +66,6 @@
   <ItemGroup>
     <Compile Include="ActorsModule.cs" />
     <Compile Include="EmailActor.cs" />
-    <Compile Include="Messages\UserBadWords.cs" />
-    <Compile Include="Messages\UserKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserActor.cs" />
   </ItemGroup>
@@ -79,6 +77,10 @@
     <ProjectReference Include="..\KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj">
       <Project>{c0f0ae62-0140-4c76-a658-2777502e936e}</Project>
       <Name>KeyWatcher.Dependencies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KeyWatcher.Messages\KeyWatcher.Messages.csproj">
+      <Project>{6148d120-e0d1-4e81-b9a0-1df13757f150}</Project>
+      <Name>KeyWatcher.Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

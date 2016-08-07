@@ -1,12 +1,12 @@
 ﻿using System;
 using Akka.Actor;
-using KeyWatcher.Actors.Messages;
 using KeyWatcher.Dependencies;
+using KeyWatcher.Messages;
 
 namespace KeyWatcher.Actors
 {
 	public sealed class EmailActor
-		: TypedActor, IHandle<UserBadWords>
+		: TypedActor, IHandle<UserBadWordsMessage>
 	{
 		private readonly INotification email;
 
@@ -20,7 +20,7 @@ namespace KeyWatcher.Actors
 			this.email = email;
 		}
 
-		public void Handle(UserBadWords message)
+		public void Handle(UserBadWordsMessage message)
 		{
 			this.email.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 				$"The user {message.User} typed the following bad words: {string.Join(", ", message.BadWords)}")
