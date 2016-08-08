@@ -24,7 +24,10 @@ namespace ParkingRampSimulatorConsole
                 WriteToAllEvents(outmessage);
                 var csm = message as ParkingConstruct.ConstructStatusMessage;
                 if (csm != null && csm.Construct.Name.Length == 0)
+                {
+                    WriteToFunctionEvents(outmessage);
                     WriteToFacilityEvents(outmessage);
+                }
             }
         }
 
@@ -47,6 +50,14 @@ namespace ParkingRampSimulatorConsole
                     }
                 }
             }
+        }
+
+        private void WriteToFunctionEvents(object message)
+        {
+            var client = TopicClient.CreateFromConnectionString(connectionString, "functionevents");
+            var json = JsonConvert.SerializeObject(message);
+            var outMessage = new BrokeredMessage(json);
+            client.Send(outMessage);
         }
 
         private void WriteToAllEvents(object message)
