@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingRampApp.UWP", "Parki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingRampApp", "ParkingRampApp\ParkingRampApp\ParkingRampApp.csproj", "{1EED83B4-2912-4200-ABD8-068FE60277C8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParkingRampXamarinApp", "ParkingRampXamarinApp", "{91FA8718-0D85-4689-A8F2-4D927BE19EC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -706,5 +708,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6EDB9F13-0147-4094-96F9-5B405A622D30} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
+		{F3BC0F56-D66D-4AE8-973C-60532B5E7F92} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
+		{62A905BD-CC42-413F-B607-AAAD3B3AE6A8} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
+		{1EED83B4-2912-4200-ABD8-068FE60277C8} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
 	EndGlobalSection
 EndGlobal

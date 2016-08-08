@@ -17,13 +17,18 @@ namespace ParkingRampApp
             InitializeComponent();
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
+        {
+            RefreshInfo(this, new EventArgs());
+        }
+
+        private async void RefreshInfo(object sender, EventArgs e)
         {
             var client = new HttpClient(new HttpClientHandler
-                { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
+            { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
             var json = await client.GetStringAsync("http://parkingrampsimulatorservices.azurewebsites.net/api/FacilityStatus");
             var obj = JsonConvert.DeserializeObject<FacilityStatus>(json);
-            this.OutputText.Text = string.Format("{0:0.#}", obj.PercentageOpen);
+            this.OutputText.Text = string.Format("Facility is {0:0.#} available", obj.PercentageOpen);
         }
     }
 }
