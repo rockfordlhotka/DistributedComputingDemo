@@ -34,7 +34,7 @@ akka {
 
     remote {
         helios.tcp {
-            port = 8080
+            port = 4545
             hostname = localhost
         }
     }

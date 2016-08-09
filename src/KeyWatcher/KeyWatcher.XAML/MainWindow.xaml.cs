@@ -2,7 +2,6 @@
 using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Windows;
 using KeyWatcher.XAML.Extensions;
 
@@ -22,7 +21,12 @@ namespace KeyWatcher.XAML
 		protected override void OnClosed(EventArgs e)
 		{
 			this.resultsSubscription.SafeDispose();
-			this.connection.Stop();
+
+			if(this.connection != null)
+			{
+				this.connection.Stop();
+			}
+
 			base.OnClosed(e);
 		}
 
@@ -32,12 +36,24 @@ namespace KeyWatcher.XAML
 			this.proxy = this.connection.CreateHubProxy("KeyWatcherHub");
 			await this.connection.Start();
 
+			this.proxy.On<SignalRNotificationMessage>(
+				"NotificationSent", async message =>
+				{
+					this.Dispatcher.Invoke(() =>
+						this.notifications.Items.Add($"On() - {message.Message}"));
+					await this.proxy.Invoke("Observed", "On");
+				});
+
 			this.resultsSubscription = this.proxy
 				.ObserveAs<SignalRNotificationMessage>("NotificationSent")
-				.ObserveOn(SynchronizationContext.Current)
-				.Subscribe(message =>
+				.Where(message => message.Message.Contains("cotton"))
+				.Take(3)
+				.Delay(TimeSpan.FromSeconds(2))
+				.Subscribe(async message => 
 				{
-					this.notifications.Items.Add(message.Message);
+					this.Dispatcher.Invoke(() =>
+						this.notifications.Items.Add($"Subscribe() - {message.Message}"));
+					await this.proxy.Invoke("Observed", "Subscribe");
 				});
 
 			this.startListening.IsEnabled = false;

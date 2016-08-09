@@ -32,18 +32,20 @@ namespace KeyWatcher.Actors
 
 			var foundBadWords = new List<string>();
 
-			foreach(var word in UserActor.BadWords)
+			foreach (var word in UserActor.BadWords)
 			{
-				if(keys.Contains(word))
+				if (keys.Contains(word))
 				{
 					foundBadWords.Add(word);
 				}
 			}
 
-			if(foundBadWords.Count > 0)
+			if (foundBadWords.Count > 0)
 			{
-				var email = Context.ActorOf(Context.DI().Props<EmailActor>());
-				email.Tell(new UserBadWordsMessage(message.User, foundBadWords.ToImmutableArray()));
+				var notification = Context.ActorOf(
+					Context.DI().Props<EmailActor>());
+				notification.Tell(new UserBadWordsMessage(
+					message.User, foundBadWords.ToImmutableArray()));
 			}
 		}
 

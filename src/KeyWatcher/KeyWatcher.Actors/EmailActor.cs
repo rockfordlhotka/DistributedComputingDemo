@@ -8,21 +8,21 @@ namespace KeyWatcher.Actors
 	public sealed class EmailActor
 		: TypedActor, IHandle<UserBadWordsMessage>
 	{
-		private readonly INotification email;
+		private readonly INotification notification;
 
-		public EmailActor(INotification email)
+		public EmailActor(INotification notification)
 		{
-			if (email == null)
+			if (notification == null)
 			{
-				throw new ArgumentNullException(nameof(email));
+				throw new ArgumentNullException(nameof(notification));
 			}
 
-			this.email = email;
+			this.notification = notification;
 		}
 
 		public void Handle(UserBadWordsMessage message)
 		{
-			this.email.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
+			this.notification.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 				$"The user {message.User} typed the following bad words: {string.Join(", ", message.BadWords)}")
 				.PipeTo(this.Self);
 		}

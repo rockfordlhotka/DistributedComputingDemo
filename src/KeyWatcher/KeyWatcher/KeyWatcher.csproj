@@ -46,6 +46,7 @@
     <Compile Include="KeyEventArgs.cs" />
     <Compile Include="KeyWatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulatedKeyWatcher.cs" />
     <Compile Include="Win32.cs" />
     <Compile Include="Win32KeyWatcher.cs" />
   </ItemGroup>

