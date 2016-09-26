@@ -32,7 +32,15 @@ namespace KeyWatcher.XAML
 
 		private async void OnStartListeningClick(object sender, RoutedEventArgs e)
 		{
-			this.connection = new HubConnection("http://localhost:5944");
+			// For console app locally...
+			//this.connection = new HubConnection("http://localhost:5944");
+
+			// For WebApi app locally...
+			//this.connection = new HubConnection("http://localhost:6344");
+
+			// For Azure instance...
+			this.connection = new HubConnection("http://keywatcherazurejr.azurewebsites.net");
+
 			this.proxy = this.connection.CreateHubProxy("KeyWatcherHub");
 			await this.connection.Start();
 

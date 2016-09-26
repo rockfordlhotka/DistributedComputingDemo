@@ -46,7 +46,7 @@ akka {
 
 					system.ActorOf(system.DI().Props<UsersActor>(), "users");
 					Console.WriteLine("Users actor hosted.");
-					Console.ReadKey();
+					Console.ReadLine();
 				}
 			}
 		}

