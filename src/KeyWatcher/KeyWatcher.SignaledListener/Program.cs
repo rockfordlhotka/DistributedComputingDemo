@@ -44,8 +44,8 @@ akka {
 				{
 					new AutoFacDependencyResolver(container, system);
 
-					system.ActorOf(system.DI().Props<UserActor>(), "user");
-					Console.WriteLine("User actor hosted.");
+					system.ActorOf(system.DI().Props<UsersActor>(), "users");
+					Console.WriteLine("Users actor hosted.");
 					Console.ReadKey();
 				}
 			}

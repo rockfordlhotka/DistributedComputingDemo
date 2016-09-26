@@ -20,9 +20,9 @@ namespace KeyWatcher.Host
 		{
 			//Program.UseSimpleKeyWatcher();
 			//Program.UseBufferedKeyWatcher();
-			Program.UseAkkaLocally();
+			//Program.UseAkkaLocally();
 			//Program.UseAkkaWithRemoting();
-			//Program.UseAkkaWithRemotingWithQuietness();
+			Program.UseAkkaWithRemotingWithQuietness();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -91,7 +91,7 @@ akka {
 			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
 				var users = system
-					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/users");
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/users");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
@@ -125,7 +125,7 @@ akka {
 			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
 				var users = system
-					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/users");
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/users");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{

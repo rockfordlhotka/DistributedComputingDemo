@@ -2,9 +2,9 @@
 {
 	public sealed class UserKeysMessage
 	{
-		public UserKeysMessage(string user, char[] keys)
+		public UserKeysMessage(string name, char[] keys)
 		{
-			this.Name = user;
+			this.Name = name;
 			this.Keys = keys;
 		}
 

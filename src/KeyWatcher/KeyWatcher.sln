@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SignaledListener
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.ReactiveHost", "KeyWatcher.ReactiveHost\KeyWatcher.ReactiveHost.csproj", "{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SignaledClient", "KeyWatcher.SignaledClient\KeyWatcher.SignaledClient.csproj", "{F336FC1B-6E46-4292-8D77-2C4BF1926768}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Messages", "KeyWatcher.Messages\KeyWatcher.Messages.csproj", "{6148D120-E0D1-4E81-B9A0-1DF13757F150}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.XAML", "KeyWatcher.XAML\KeyWatcher.XAML.csproj", "{8AFB6843-53C5-4512-B5E1-92729FFCD584}"
@@ -59,10 +57,6 @@ Global
 		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F336FC1B-6E46-4292-8D77-2C4BF1926768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F336FC1B-6E46-4292-8D77-2C4BF1926768}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F336FC1B-6E46-4292-8D77-2C4BF1926768}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F336FC1B-6E46-4292-8D77-2C4BF1926768}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Release|Any CPU.ActiveCfg = Release|Any CPU
