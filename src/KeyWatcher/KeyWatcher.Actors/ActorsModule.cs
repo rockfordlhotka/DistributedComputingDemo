@@ -7,6 +7,7 @@ namespace KeyWatcher.Actors
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
+			builder.RegisterType<UsersActor>();
 			builder.RegisterType<UserActor>();
 			builder.RegisterType<EmailActor>();
 		}

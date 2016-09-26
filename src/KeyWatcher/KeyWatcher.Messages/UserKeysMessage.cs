@@ -4,11 +4,11 @@
 	{
 		public UserKeysMessage(string user, char[] keys)
 		{
-			this.User = user;
+			this.Name = user;
 			this.Keys = keys;
 		}
 
-		public string User { get; }
+		public string Name { get; }
 		public char[] Keys { get; }
 	}
 }

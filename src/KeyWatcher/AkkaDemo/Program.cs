@@ -10,6 +10,7 @@ namespace AkkaDemo
 			using (var system = ActorSystem.Create("UserSystem"))
 			{
 				var usersActor = system.ActorOf<UsersActor>("users");
+				Console.Out.WriteLine($"Users actor at {usersActor.Path.ToStringWithAddress()}");
 				//usersActor.Tell(new UserCountMessage(1, 3));
 				usersActor.Tell(new UserCountMessage(2, 5));
 				//usersActor.Tell(new UserCountMessage(3, 10));

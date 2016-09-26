@@ -22,12 +22,13 @@ namespace KeyWatcher.Actors
 			}
 
 			this.logger = logger;
+			//this.Name = name;
 		}
 
 		public void Handle(UserKeysMessage message)
 		{
 			var keys = new string(message.Keys).ToLower();
-			this.logger.LogAsync($"Received message from {message.User}: {keys}")
+			this.logger.LogAsync($"Received message from {message.Name}: {keys}")
 				.PipeTo(this.Self);
 
 			var foundBadWords = new List<string>();
@@ -45,18 +46,10 @@ namespace KeyWatcher.Actors
 				var notification = Context.ActorOf(
 					Context.DI().Props<EmailActor>());
 				notification.Tell(new UserBadWordsMessage(
-					message.User, foundBadWords.ToImmutableArray()));
+					message.Name, foundBadWords.ToImmutableArray()));
 			}
 		}
 
-		protected override void PreStart()
-		{
-			this.logger.LogAsync($"{nameof(UserActor)}.{nameof(this.PreStart)}");
-		}
-
-		protected override void PostStop()
-		{
-			this.logger.LogAsync($"{nameof(UserActor)}.{nameof(this.PostStop)}");
-		}
+		public string Name { get; private set; }
 	}
 }
