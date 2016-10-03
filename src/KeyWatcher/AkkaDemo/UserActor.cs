@@ -4,15 +4,16 @@ using System;
 namespace AkkaDemo
 {
 	public sealed class UserActor
-		: TypedActor, IHandle<int>
+		: ReceiveActor
 	{
 		public UserActor(uint id)
 		{
 			this.Id = id;
 			Console.Out.WriteLine($"New user {this.Id}");
+			this.Receive<int>(message => this.Handle(message));
 		}
 
-		public void Handle(int message)
+		private void Handle(int message)
 		{
 			if(message == -1)
 			{

@@ -187,7 +187,8 @@ akka {
 						new UserKeysMessage(userName, e.Keys), Formatting.Indented);
 					var content = new StringContent(message,
 						Encoding.Unicode, "application/json");
-					var postResponse = new HttpClient().PostAsync("http://keywatcherazurejr.azurewebsites.net/api/keywatcher", content);
+					var postResponse = new HttpClient().PostAsync(
+						"http://keywatcherazurejr.azurewebsites.net/api/keywatcher", content);
 					postResponse.Wait();
 				};
 

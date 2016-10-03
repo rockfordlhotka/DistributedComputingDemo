@@ -9,7 +9,7 @@ using System.Collections.Immutable;
 namespace KeyWatcher.Actors
 {
 	public sealed class UserActor
-		: TypedActor, IHandle<UserKeysMessage>
+		: ReceiveActor
 	{
 		private static readonly string[] BadWords = { "cotton", "headed", "ninny", "muggins" };
 		private readonly ILogger logger;
@@ -22,10 +22,10 @@ namespace KeyWatcher.Actors
 			}
 
 			this.logger = logger;
-			//this.Name = name;
+			this.Receive<UserKeysMessage>(message => this.Handle(message));
 		}
 
-		public void Handle(UserKeysMessage message)
+		private void Handle(UserKeysMessage message)
 		{
 			var keys = new string(message.Keys).ToLower();
 			this.logger.LogAsync($"Received message from {message.Name}: {keys}")
@@ -49,7 +49,5 @@ namespace KeyWatcher.Actors
 					message.Name, foundBadWords.ToImmutableArray()));
 			}
 		}
-
-		public string Name { get; private set; }
 	}
 }

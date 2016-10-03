@@ -6,7 +6,7 @@ using KeyWatcher.Messages;
 namespace KeyWatcher.Actors
 {
 	public sealed class EmailActor
-		: TypedActor, IHandle<UserBadWordsMessage>
+		: ReceiveActor
 	{
 		private readonly INotification notification;
 
@@ -18,9 +18,10 @@ namespace KeyWatcher.Actors
 			}
 
 			this.notification = notification;
+			this.Receive<UserBadWordsMessage>(message => this.Handle(message));
 		}
 
-		public void Handle(UserBadWordsMessage message)
+		private void Handle(UserBadWordsMessage message)
 		{
 			this.notification.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 				$"The user {message.User} typed the following bad words: {string.Join(", ", message.BadWords)}")

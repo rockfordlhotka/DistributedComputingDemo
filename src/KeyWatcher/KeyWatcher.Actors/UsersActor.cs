@@ -7,11 +7,16 @@ using Akka.DI.Core;
 namespace KeyWatcher.Actors
 {
 	public sealed class UsersActor
-		: TypedActor, IHandle<UserKeysMessage>
+		: ReceiveActor
 	{
 		private Dictionary<string, IActorRef> users = new Dictionary<string, IActorRef>();
 
-		public void Handle(UserKeysMessage message)
+		public UsersActor()
+		{
+			this.Receive<UserKeysMessage>(message => this.Handle(message));
+		}
+
+		private void Handle(UserKeysMessage message)
 		{
 			if (this.users.ContainsKey(message.Name))
 			{
