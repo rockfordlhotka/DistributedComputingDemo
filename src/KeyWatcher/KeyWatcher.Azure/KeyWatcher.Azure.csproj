@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\KeyWatcher - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\KeyWatcherAzureJR.pubxml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

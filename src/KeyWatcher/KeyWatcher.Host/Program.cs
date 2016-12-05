@@ -188,7 +188,7 @@ akka {
 					var content = new StringContent(message,
 						Encoding.Unicode, "application/json");
 					var postResponse = new HttpClient().PostAsync(
-						"http://keywatcherazurejr.azurewebsites.net/api/keywatcher", content);
+						"http://keywatcher.azurewebsites.net/api/keywatcher", content);
 					postResponse.Wait();
 				};
 
