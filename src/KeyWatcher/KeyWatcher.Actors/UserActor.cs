@@ -4,7 +4,6 @@ using KeyWatcher.Dependencies;
 using KeyWatcher.Messages;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 
 namespace KeyWatcher.Actors
 {
@@ -46,7 +45,7 @@ namespace KeyWatcher.Actors
 				var notification = Context.ActorOf(
 					Context.DI().Props<EmailActor>());
 				notification.Tell(new UserBadWordsMessage(
-					message.Name, foundBadWords.ToImmutableArray()));
+					message.Name, foundBadWords.ToArray()));
 			}
 		}
 	}

@@ -25,6 +25,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaDemo", "AkkaDemo\AkkaDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Azure", "KeyWatcher.Azure\KeyWatcher.Azure.csproj", "{D5F23DDA-917B-42B8-A8F8-B799855EAF84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Contracts", "KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj", "{1F779DBB-FA49-4A0E-982C-3BC6AC3E6209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Grains", "KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj", "{58D2E565-44E6-4D86-9D2B-E244E1606A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Host", "KeyWatcher.Orleans.Host\KeyWatcher.Orleans.Host.csproj", "{4D3F33FA-2623-4B85-8752-9C5A155D474D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{7DC7020F-1263-49DD-8182-025A25AD5984}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +83,22 @@ Global
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F779DBB-FA49-4A0E-982C-3BC6AC3E6209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F779DBB-FA49-4A0E-982C-3BC6AC3E6209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F779DBB-FA49-4A0E-982C-3BC6AC3E6209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F779DBB-FA49-4A0E-982C-3BC6AC3E6209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D2E565-44E6-4D86-9D2B-E244E1606A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D2E565-44E6-4D86-9D2B-E244E1606A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D2E565-44E6-4D86-9D2B-E244E1606A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D2E565-44E6-4D86-9D2B-E244E1606A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3F33FA-2623-4B85-8752-9C5A155D474D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3F33FA-2623-4B85-8752-9C5A155D474D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3F33FA-2623-4B85-8752-9C5A155D474D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3F33FA-2623-4B85-8752-9C5A155D474D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC7020F-1263-49DD-8182-025A25AD5984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC7020F-1263-49DD-8182-025A25AD5984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC7020F-1263-49DD-8182-025A25AD5984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC7020F-1263-49DD-8182-025A25AD5984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
