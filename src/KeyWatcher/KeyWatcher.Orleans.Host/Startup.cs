@@ -1,6 +1,4 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using KeyWatcher.Dependencies;
+﻿using KeyWatcher.Dependencies;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 

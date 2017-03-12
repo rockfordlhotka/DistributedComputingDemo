@@ -26,7 +26,7 @@ namespace KeyWatcher.Orleans.Client
 				keyLogger.KeysLogged += (s, e) =>
 				{
 					var user = GrainClient.GrainFactory.GetGrain<IUserGrain>(userName);
-					user.Process(new UserKeysMessage(userName, e.Keys));
+					user.ProcessAsync(new UserKeysMessage(userName, e.Keys));
 				};
 
 				Application.Run();

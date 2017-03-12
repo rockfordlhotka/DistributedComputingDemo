@@ -1,5 +1,4 @@
-﻿using Orleans.Runtime.Configuration;
-using Orleans.Runtime.Host;
+﻿using Orleans.Runtime.Host;
 using System;
 using System.Net;
 
@@ -8,6 +7,7 @@ namespace KeyWatcher.Orleans.Host
 	class Program
 	{
 		private static SiloHost siloHost;
+
 		static void Main(string[] args)
 		{
 			var hostDomain = AppDomain.CreateDomain("OrleansHost", null,
@@ -26,10 +26,9 @@ namespace KeyWatcher.Orleans.Host
 		private static void InitializeSilo(string[] args)
 		{
 			Program.siloHost = new SiloHost(Dns.GetHostName());
+			Program.siloHost.ConfigFileName = "OrleansConfiguration.xml";
 
-			siloHost.ConfigFileName = "OrleansConfiguration.xml";
-
-			siloHost.InitializeOrleansSilo();
+			Program.siloHost.InitializeOrleansSilo();
 
 			if (!siloHost.StartOrleansSilo())
 			{

@@ -2,6 +2,9 @@
 <OrleansConfiguration xmlns="urn:orleans">
   <Globals>
     <SeedNode Address="localhost" Port="11111" />
+    <StorageProviders>
+      <Provider Type="Orleans.Storage.MemoryStorage" Name="Default" />
+    </StorageProviders>
   </Globals>
   <Defaults>
     <Networking Address="localhost" Port="11111" />

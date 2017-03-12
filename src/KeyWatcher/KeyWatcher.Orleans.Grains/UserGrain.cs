@@ -2,14 +2,16 @@
 using KeyWatcher.Messages;
 using KeyWatcher.Orleans.Contracts;
 using Orleans;
+using Orleans.Providers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Grains
 {
+	[StorageProvider(ProviderName = "Default")]
 	public class UserGrain
-		: Grain, IUserGrain
+		: Grain<UserGrainState>, IUserGrain
 	{
 		private static readonly string[] BadWords = { "cotton", "headed", "ninny", "muggins" };
 		private readonly ILogger logger;
@@ -31,20 +33,31 @@ namespace KeyWatcher.Orleans.Grains
 			this.notification = notification;
 		}
 
-		public override Task OnActivateAsync()
+		public override async Task OnActivateAsync()
 		{
 			this.Id = this.GetPrimaryKeyString();
-			Console.Out.WriteLine($"ID for user is {this.Id}");
-			return base.OnActivateAsync();
+			await this.logger.LogAsync($"{nameof(OnActivateAsync)} - user ID is {this.Id}");
+			await base.OnActivateAsync();
+		}
+
+		public override async Task OnDeactivateAsync()
+		{
+			await this.logger.LogAsync($"{nameof(OnDeactivateAsync)} - user ID is {this.Id}");
+			await base.OnDeactivateAsync();
 		}
 
 		public string Id { get; private set; }
 
-		public async Task Process(UserKeysMessage message)
+		public async Task ProcessAsync(UserKeysMessage message)
 		{
 			var keys = new string(message.Keys).ToLower();
 
 			await this.logger.LogAsync($"Received message from {message.Name}: {keys}");
+
+			if (keys.Contains("die"))
+			{
+				throw new NotSupportedException("I will never die!");
+			}
 
 			var foundBadWords = new List<string>();
 
@@ -58,10 +71,15 @@ namespace KeyWatcher.Orleans.Grains
 
 			if (foundBadWords.Count > 0)
 			{
+				this.State.BadWords.AddRange(foundBadWords);
+				await this.WriteStateAsync();
+
 				var badWords = string.Join(", ", foundBadWords);
 				await this.notification.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 					$"The user {message.Name} typed the following bad words: {badWords}");
 			}
+
+			await this.logger.LogAsync($"Bad word count for {message.Name}: {this.State.BadWords.Count}");
 		}
 	}
 }
