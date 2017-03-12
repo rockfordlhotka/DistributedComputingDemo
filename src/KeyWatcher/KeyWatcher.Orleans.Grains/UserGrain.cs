@@ -15,9 +15,9 @@ namespace KeyWatcher.Orleans.Grains
 	{
 		private static readonly string[] BadWords = { "cotton", "headed", "ninny", "muggins" };
 		private readonly ILogger logger;
-		private readonly INotification notification;
+		private readonly Lazy<INotification> notification;
 
-		public UserGrain(ILogger logger, INotification notification)
+		public UserGrain(ILogger logger, Lazy<INotification> notification)
 		{
 			if (logger == null)
 			{
@@ -75,7 +75,7 @@ namespace KeyWatcher.Orleans.Grains
 				await this.WriteStateAsync();
 
 				var badWords = string.Join(", ", foundBadWords);
-				await this.notification.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
+				await this.notification.Value.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 					$"The user {message.Name} typed the following bad words: {badWords}");
 			}
 
