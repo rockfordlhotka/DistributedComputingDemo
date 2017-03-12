@@ -4,7 +4,6 @@ using KeyWatcher.Orleans.Contracts;
 using Orleans;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Grains
@@ -31,6 +30,15 @@ namespace KeyWatcher.Orleans.Grains
 			this.logger = logger;
 			this.notification = notification;
 		}
+
+		public override Task OnActivateAsync()
+		{
+			this.Id = this.GetPrimaryKeyString();
+			Console.Out.WriteLine($"ID for user is {this.Id}");
+			return base.OnActivateAsync();
+		}
+
+		public string Id { get; private set; }
 
 		public async Task Process(UserKeysMessage message)
 		{
