@@ -25,9 +25,10 @@ namespace KeyWatcher.Orleans.Host
 
 		private static void InitializeSilo(string[] args)
 		{
-			Program.siloHost = new SiloHost(Dns.GetHostName());
-			Program.siloHost.ConfigFileName = "OrleansConfiguration.xml";
-
+			Program.siloHost = new SiloHost(Dns.GetHostName())
+			{
+				ConfigFileName = "OrleansConfiguration.xml"
+			};
 			Program.siloHost.InitializeOrleansSilo();
 
 			if (!siloHost.StartOrleansSilo())

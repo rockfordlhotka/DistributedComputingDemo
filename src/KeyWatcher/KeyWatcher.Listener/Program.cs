@@ -15,16 +15,16 @@ namespace KeyWatcher.Listener
 		{
 			var config = ConfigurationFactory.ParseString(@"
 akka {
-    actor {
-        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
-    }
+	 actor {
+		  provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
+	 }
 
-    remote {
-        helios.tcp {
-            port = 4545
-            hostname = localhost
-        }
-    }
+	 remote {
+		  helios.tcp {
+				port = 4545
+				hostname = localhost
+		  }
+	 }
 }");
 			var builder = new ContainerBuilder();
 			builder.RegisterModule<DependenciesModule>();

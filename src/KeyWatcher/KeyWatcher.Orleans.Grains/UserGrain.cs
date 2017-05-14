@@ -19,18 +19,8 @@ namespace KeyWatcher.Orleans.Grains
 
 		public UserGrain(ILogger logger, Lazy<INotification> notification)
 		{
-			if (logger == null)
-			{
-				throw new ArgumentNullException(nameof(logger));
-			}
-
-			if (notification == null)
-			{
-				throw new ArgumentNullException(nameof(notification));
-			}
-
-			this.logger = logger;
-			this.notification = notification;
+			this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			this.notification = notification ?? throw new ArgumentNullException(nameof(notification));
 		}
 
 		public override async Task OnActivateAsync()

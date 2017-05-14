@@ -24,10 +24,10 @@ namespace KeyWatcher.Host
 			//Program.UseSimpleKeyWatcher();
 			//Program.UseBufferedKeyWatcher();
 			//Program.UseAkkaLocally();
-			//Program.UseAkkaWithRemoting();
+			Program.UseAkkaWithRemoting();
 			//Program.UseAkkaWithRemotingWithQuietness();
 			//Program.UseAkkaViaWebApiLocally();
-			Program.UseAkkaViaWebApiOnAzure();
+			//Program.UseAkkaViaWebApiOnAzure();
 		}
 
 		private static void UseBufferedKeyWatcher()
@@ -79,15 +79,15 @@ namespace KeyWatcher.Host
 		{
 			var config = ConfigurationFactory.ParseString(@"
 akka {
-    actor {
-        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
-    }
-    remote {
-        helios.tcp {
-            port = 0
-            hostname = localhost
-        }
-    }
+	 actor {
+		  provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
+	 }
+	 remote {
+		  helios.tcp {
+				port = 0
+				hostname = localhost
+		  }
+	 }
 }
 ");
 
@@ -114,15 +114,15 @@ akka {
 		{
 			var config = ConfigurationFactory.ParseString(@"
 akka {
-    actor {
-        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
-    }
-    remote {
-        helios.tcp {
-            port = 0
-            hostname = localhost
-        }
-    }
+	 actor {
+		  provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
+	 }
+	 remote {
+		  helios.tcp {
+				port = 0
+				hostname = localhost
+		  }
+	 }
 }
 ");
 
