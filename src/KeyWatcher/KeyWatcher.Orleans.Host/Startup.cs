@@ -10,9 +10,6 @@ namespace KeyWatcher.Orleans.Host
 	{
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			// NOTE: This RemoveAt() line should be removed once this
-			// is resolved: https://github.com/dotnet/orleans/issues/2747
-			services.RemoveAt(0);
 			var containerBuilder = new ContainerBuilder();
 			containerBuilder.RegisterModule<DependenciesModule>();
 			containerBuilder.Populate(services);
