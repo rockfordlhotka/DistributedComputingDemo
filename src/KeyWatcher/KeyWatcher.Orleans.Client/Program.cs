@@ -24,7 +24,7 @@ namespace KeyWatcher.Orleans.Client
 
 		static void Main(string[] args) =>
 			Program.UseOrleansLocally();
-			//Program.UseOrleansViaWebApiOnAzure();
+		//Program.UseOrleansViaWebApiOnAzure(Program.AzureUri);
 
 		private static void UseOrleansLocally()
 		{
