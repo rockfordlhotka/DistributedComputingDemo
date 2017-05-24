@@ -10,15 +10,8 @@ namespace KeyWatcher.Dependencies
 	{
 		private readonly IHubContext hub;
 
-		public SignalRNotification(IHubContext hub)
-		{
-			if (hub == null)
-			{
-				throw new ArgumentNullException(nameof(hub));
-			}
-
-			this.hub = hub;
-		}
+		public SignalRNotification(IHubContext hub) =>
+			this.hub = hub ?? throw new ArgumentNullException(nameof(hub));
 
 		public Task SendAsync(string recipient, string title, string message)
 		{

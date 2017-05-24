@@ -3,7 +3,10 @@
   <Globals>
     <SeedNode Address="localhost" Port="11111" />
     <StorageProviders>
-      <Provider Type="Orleans.Storage.MemoryStorage" Name="Default" />
+      <!--<Provider Type="Orleans.Storage.MemoryStorage" Name="Default" />-->
+      <Provider Type="KeyWatcher.Orleans.Host.StorageProviders.FileStorageProvider"
+                Name="Default"
+                RootDirectory=".\Storage"/>
     </StorageProviders>
   </Globals>
   <Defaults>

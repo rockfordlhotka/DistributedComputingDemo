@@ -13,15 +13,8 @@ namespace KeyWatcher.Dependencies
 			: base()
 		{ }
 
-		public DependenciesModule(IHubContext hub)
-		{
-			if (hub == null)
-			{
-				throw new ArgumentNullException(nameof(hub));
-			}
-
-			this.hub = hub;
-		}
+		public DependenciesModule(IHubContext hub) =>
+			this.hub = hub ?? throw new ArgumentNullException(nameof(hub));
 
 		protected override void Load(ContainerBuilder builder)
 		{

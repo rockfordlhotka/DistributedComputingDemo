@@ -1,27 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher", "KeyWatcher\KeyWatcher.csproj", "{C2DB4961-6B87-4D78-A88D-59E4EF212F99}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Host", "KeyWatcher.Host\KeyWatcher.Host.csproj", "{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Listener", "KeyWatcher.Listener\KeyWatcher.Listener.csproj", "{6353130F-AC79-421B-8797-3919D5AA6824}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Actors", "KeyWatcher.Actors\KeyWatcher.Actors.csproj", "{C2A64453-8055-4EF3-8EB6-32401214083E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{C0F0AE62-0140-4C76-A658-2777502E936E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SignaledListener", "KeyWatcher.SignaledListener\KeyWatcher.SignaledListener.csproj", "{08111049-5896-40F5-B700-F72443CC5956}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.ReactiveHost", "KeyWatcher.ReactiveHost\KeyWatcher.ReactiveHost.csproj", "{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Messages", "KeyWatcher.Messages\KeyWatcher.Messages.csproj", "{6148D120-E0D1-4E81-B9A0-1DF13757F150}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.XAML", "KeyWatcher.XAML\KeyWatcher.XAML.csproj", "{8AFB6843-53C5-4512-B5E1-92729FFCD584}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaDemo", "AkkaDemo\AkkaDemo.csproj", "{F086934E-BE9C-466E-9CE3-BF8DFD989CC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Azure", "KeyWatcher.Azure\KeyWatcher.Azure.csproj", "{D5F23DDA-917B-42B8-A8F8-B799855EAF84}"
 EndProject
@@ -39,34 +25,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2DB4961-6B87-4D78-A88D-59E4EF212F99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD1A5099-0C83-4744-AF8D-3ACFA5311BBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6353130F-AC79-421B-8797-3919D5AA6824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6353130F-AC79-421B-8797-3919D5AA6824}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6353130F-AC79-421B-8797-3919D5AA6824}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6353130F-AC79-421B-8797-3919D5AA6824}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2A64453-8055-4EF3-8EB6-32401214083E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2A64453-8055-4EF3-8EB6-32401214083E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2A64453-8055-4EF3-8EB6-32401214083E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0F0AE62-0140-4C76-A658-2777502E936E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0F0AE62-0140-4C76-A658-2777502E936E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0F0AE62-0140-4C76-A658-2777502E936E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0F0AE62-0140-4C76-A658-2777502E936E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08111049-5896-40F5-B700-F72443CC5956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08111049-5896-40F5-B700-F72443CC5956}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08111049-5896-40F5-B700-F72443CC5956}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08111049-5896-40F5-B700-F72443CC5956}.Release|Any CPU.Build.0 = Release|Any CPU
-		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{743D9C63-44F2-44FD-95C1-1D9C2CF7F625}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6148D120-E0D1-4E81-B9A0-1DF13757F150}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,10 +37,6 @@ Global
 		{8AFB6843-53C5-4512-B5E1-92729FFCD584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFB6843-53C5-4512-B5E1-92729FFCD584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AFB6843-53C5-4512-B5E1-92729FFCD584}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F086934E-BE9C-466E-9CE3-BF8DFD989CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F086934E-BE9C-466E-9CE3-BF8DFD989CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F086934E-BE9C-466E-9CE3-BF8DFD989CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F086934E-BE9C-466E-9CE3-BF8DFD989CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F23DDA-917B-42B8-A8F8-B799855EAF84}.Release|Any CPU.ActiveCfg = Release|Any CPU

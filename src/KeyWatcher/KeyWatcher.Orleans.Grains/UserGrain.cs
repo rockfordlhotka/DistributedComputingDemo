@@ -5,6 +5,7 @@ using Orleans;
 using Orleans.Providers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Grains
@@ -40,7 +41,7 @@ namespace KeyWatcher.Orleans.Grains
 
 		public async Task ProcessAsync(UserKeysMessage message)
 		{
-			var keys = new string(message.Keys).ToLower();
+			var keys = new string(message.Keys.ToArray()).ToLower();
 
 			await this.logger.LogAsync($"Received message from {message.Name}: {keys}");
 

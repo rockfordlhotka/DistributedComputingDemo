@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KeyWatcher.XAML"
         mc:Ignorable="d"
 		  WindowStartupLocation="CenterScreen"
-        Title="Akka + SignalR + Rx" Height="350" Width="525">
+        Title="Orleans + SignalR + Rx" Height="350" Width="525">
     <Grid>
 		<Button x:Name="startListening" Content="Start Listening" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="102" Click="OnStartListeningClick"/>
 		<ListBox x:Name="notifications" HorizontalAlignment="Left" Height="267" Margin="10,42,0,0" VerticalAlignment="Top" Width="497"/>

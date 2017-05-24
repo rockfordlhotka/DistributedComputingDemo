@@ -13,10 +13,8 @@ namespace KeyWatcher.XAML
 		private IHubProxy proxy;
 		private IDisposable resultsSubscription;
 
-		public MainWindow()
-		{
+		public MainWindow() =>
 			this.InitializeComponent();
-		}
 
 		protected override void OnClosed(EventArgs e)
 		{
