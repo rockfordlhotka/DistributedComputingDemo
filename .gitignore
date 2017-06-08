@@ -253,3 +253,4 @@ paket-files/
 
 # snapshots from Akka.net
 snapshots/
+/src/ParkingSim/TopicSubFunction/local.settings.json
