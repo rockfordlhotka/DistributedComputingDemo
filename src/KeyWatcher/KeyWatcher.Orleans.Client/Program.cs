@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace KeyWatcher.Orleans.Client

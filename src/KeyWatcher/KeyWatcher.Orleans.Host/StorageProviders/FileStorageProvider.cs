@@ -5,6 +5,7 @@ using Orleans.Providers;
 using Orleans.Runtime;
 using Orleans.Storage;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace KeyWatcher.Orleans.Host.StorageProviders
 {
@@ -20,12 +21,15 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 		public Task Init(string name, IProviderRuntime providerRuntime, IProviderConfiguration config)
 		{
 			this.Name = name;
-			if (string.IsNullOrWhiteSpace(config.Properties["RootDirectory"]))
+			var rootDirectory = config.Properties["RootDirectory"];
+
+			if (string.IsNullOrWhiteSpace(rootDirectory))
 			{
 				throw new ArgumentException("RootDirectory property not set");
 			}
 
-			var directory = new System.IO.DirectoryInfo(config.Properties["RootDirectory"]);
+			var directory = new DirectoryInfo(rootDirectory);
+
 			if (!directory.Exists)
 			{
 				directory.Create();
@@ -33,18 +37,13 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 
 			this.RootDirectory = directory.FullName;
 
-			return TaskDone.Done;
+			return Task.CompletedTask;
 		}
 
 		public async Task ReadStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
 		{
-			var collectionName = grainState.GetType().Name;
-			var key = grainReference.ToKeyString();
+			var fileInfo = this.GetFileInfo(grainReference, grainState);
 
-			var fName = key + "." + collectionName;
-			var path = System.IO.Path.Combine(this.RootDirectory, fName);
-
-			var fileInfo = new System.IO.FileInfo(path);
 			if (fileInfo.Exists)
 			{
 				using (var stream = fileInfo.OpenText())
@@ -58,22 +57,23 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 
 		public async Task WriteStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
 		{
-			var storedData = JsonConvert.SerializeObject(grainState.State);
+			var fileInfo = this.GetFileInfo(grainReference, grainState);
 
+			using (var stream = new StreamWriter(
+				fileInfo.Open(FileMode.Create, FileAccess.Write)))
+			{
+				await stream.WriteAsync(
+					JsonConvert.SerializeObject(grainState.State));
+			}
+		}
+
+		private FileInfo GetFileInfo(GrainReference grainReference, IGrainState grainState)
+		{
 			var collectionName = grainState.GetType().Name;
 			var key = grainReference.ToKeyString();
+			var path = Path.Combine(this.RootDirectory, $"{key}.{collectionName}");
 
-			var fName = key + "." + collectionName;
-			var path = System.IO.Path.Combine(this.RootDirectory, fName);
-
-			var fileInfo = new System.IO.FileInfo(path);
-
-			using (var stream = new System.IO.StreamWriter(
-						  fileInfo.Open(System.IO.FileMode.Create,
-											 System.IO.FileAccess.Write)))
-			{
-				await stream.WriteAsync(storedData);
-			}
+			return new FileInfo(path);
 		}
 
 		public Logger Log { get; set; }
