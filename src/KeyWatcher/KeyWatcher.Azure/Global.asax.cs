@@ -1,4 +1,5 @@
-﻿using Orleans;
+﻿using KeyWatcher.Orleans.Grains;
+using Orleans;
 using Orleans.Runtime.Configuration;
 using Orleans.Runtime.Host;
 using Orleans.Storage;
@@ -18,6 +19,9 @@ namespace KeyWatcher.Azure
 
 		protected void Application_Start()
 		{
+			// TODO: I don't know WHY Orleans doesn't work if I don't do this...
+			// But this "helps" get Orleans to find the grains.
+			var x = typeof(UserGrain);
 			AreaRegistration.RegisterAllAreas();
 			SWH.GlobalConfiguration.Configure(WebApiConfig.Register);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
