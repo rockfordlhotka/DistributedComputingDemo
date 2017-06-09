@@ -1,9 +1,11 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using KeyWatcher.Dependencies;
+using Autofac.Integration.WebApi;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Owin;
 using System;
+using System.Web.Http;
 
 namespace KeyWatcher.Azure
 {
@@ -14,10 +16,14 @@ namespace KeyWatcher.Azure
 
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			var containerBuilder = new ContainerBuilder();
-			containerBuilder.RegisterModule<DependenciesModule>();
-			containerBuilder.Populate(services);
-			var container = containerBuilder.Build();
+			var hub = GlobalHost.ConnectionManager.GetHubContext<KeyWatcherHub>();
+
+			var builder = new ContainerBuilder();
+			builder.RegisterModule(new AzureModule(hub, services));
+			var container = builder.Build();
+
+			GlobalConfiguration.Configuration.DependencyResolver =
+				new AutofacWebApiDependencyResolver(container);
 			return new AutofacServiceProvider(container);
 		}
 	}

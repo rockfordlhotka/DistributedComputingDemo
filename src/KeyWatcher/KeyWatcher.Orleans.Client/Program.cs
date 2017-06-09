@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Client
 {
@@ -22,18 +23,33 @@ namespace KeyWatcher.Orleans.Client
 		private const string AzureUri = "http://keywatcher.azurewebsites.net/api/keywatcher";
 
 		static void Main(string[] args) =>
-			Program.UseOrleansLocally();
-		//Program.UseOrleansViaWebApiOnAzure(Program.AzureUri);
+			Program.UseOrleansViaWebApi(Program.LocalUri);
+		//Program.UseOrleansLocally();
 
 		private static void UseOrleansLocally()
 		{
 			Program.userName = Program.GetUserName();
 
-			Console.Out.WriteLine("Waiting for Orleans Silo to start. Press Enter to proceed...");
-			Console.In.ReadLine();
-
 			var config = ClientConfiguration.LocalhostSilo(30000);
+
+			while (true)
+			{
+				try
+				{
+					var client =
+						 new ClientBuilder().UseConfiguration(config).Build();
+					client.Connect().GetAwaiter().GetResult();
+					break;
+				}
+
+				catch
+				{
+					Task.Delay(TimeSpan.FromSeconds(1));
+				}
+			}
+
 			GrainClient.Initialize(config);
+			Console.Out.WriteLine("Begin...");
 
 			using (var keyLogger = new BufferedEventedNativeKeyWatcher(Program.BufferSize))
 			{
@@ -58,6 +74,7 @@ namespace KeyWatcher.Orleans.Client
 
 		private static void UseOrleansViaWebApi(string url)
 		{
+			Console.Out.WriteLine("Begin...");
 			var userName = Program.GetUserName();
 
 			using (var keyLogger = new BufferedEventedNativeKeyWatcher(Program.BufferSize))

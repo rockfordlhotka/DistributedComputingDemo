@@ -34,20 +34,19 @@ namespace KeyWatcher.XAML
 			//this.connection = new HubConnection("http://localhost:5944");
 
 			// For WebApi app locally...
-			//this.connection = new HubConnection("http://localhost:6344");
+			this.connection = new HubConnection("http://localhost:6344");
 
 			// For Azure instance...
-			this.connection = new HubConnection("http://keywatcher.azurewebsites.net");
+			//this.connection = new HubConnection("http://keywatcher.azurewebsites.net");
 
 			this.proxy = this.connection.CreateHubProxy("KeyWatcherHub");
 			await this.connection.Start();
 
 			this.proxy.On<SignalRNotificationMessage>(
-				"NotificationSent", async message =>
+				"NotificationSent", message =>
 				{
 					this.Dispatcher.Invoke(() =>
 						this.notifications.Items.Add($"On() - {message.Message}"));
-					await this.proxy.Invoke("Observed", "On");
 				});
 
 			this.resultsSubscription = this.proxy
@@ -55,11 +54,10 @@ namespace KeyWatcher.XAML
 				.Where(message => message.Message.Contains("cotton"))
 				.Take(3)
 				.Delay(TimeSpan.FromSeconds(2))
-				.Subscribe(async message => 
+				.Subscribe(message => 
 				{
 					this.Dispatcher.Invoke(() =>
 						this.notifications.Items.Add($"Subscribe() - {message.Message}"));
-					await this.proxy.Invoke("Observed", "Subscribe");
 				});
 
 			this.startListening.IsEnabled = false;
