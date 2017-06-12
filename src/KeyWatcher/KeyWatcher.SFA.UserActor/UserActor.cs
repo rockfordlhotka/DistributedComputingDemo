@@ -22,6 +22,23 @@ namespace KeyWatcher.SFA.UserActor
 			 : base(actorService, actorId) =>
 			this.notification = notification;
 
+		protected override async Task OnActivateAsync()
+		{
+			var id = this.Id.GetStringId();
+			var getState = await this.StateManager.TryGetStateAsync<UserActorState>(id);
+
+			if (getState.HasValue)
+			{
+				ActorEventSource.Current.Message($"Getting state for {id}");
+				this.state = getState.Value;
+			}
+			else
+			{
+				ActorEventSource.Current.Message($"Creating state for {id}");
+				this.state = new UserActorState();
+			}
+		}
+
 		public async Task ProcessAsync(UserKeysMutableMessage message)
 		{
 			var keys = new string(message.Keys.ToArray()).ToLower();
@@ -39,7 +56,8 @@ namespace KeyWatcher.SFA.UserActor
 			if (foundBadWords.Count > 0)
 			{
 				this.state.BadWords.AddRange(foundBadWords);
-				await this.StateManager.AddOrUpdateStateAsync(this.Id.ToString(), this.state, (id, state) => this.state);
+				await this.StateManager.AddOrUpdateStateAsync(
+					this.Id.GetStringId(), this.state, (id, state) => this.state);
 				await this.StateManager.SaveStateAsync();
 
 				var badWords = string.Join(", ", foundBadWords);
@@ -49,21 +67,6 @@ namespace KeyWatcher.SFA.UserActor
 
 			ActorEventSource.Current.ActorMessage(
 				this, $"Bad word count for {message.Name}: {this.state.BadWords.Count}");
-		}
-
-		protected override async Task OnActivateAsync()
-		{
-			var id = this.Id.ToString();
-			var getState = await this.StateManager.TryGetStateAsync<UserActorState>(id);
-
-			if (getState.HasValue)
-			{
-				this.state = getState.Value;
-			}
-			else
-			{
-				this.state = new UserActorState();
-			}
 		}
 	}
 }

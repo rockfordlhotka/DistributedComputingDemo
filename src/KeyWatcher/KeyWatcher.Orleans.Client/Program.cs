@@ -22,9 +22,13 @@ namespace KeyWatcher.Orleans.Client
 		private const string LocalUri = "http://localhost:6344/api/keywatcher";
 		private const string AzureUri = "http://keywatcher.azurewebsites.net/api/keywatcher";
 
-		static void Main(string[] args) =>
+#pragma warning disable IDE0022 // Use expression body for methods
+		static void Main(string[] args)
+		{
+			//Program.UseOrleansLocally();
 			Program.UseOrleansViaWebApi(Program.AzureUri);
-		//Program.UseOrleansLocally();
+		}
+#pragma warning restore IDE0022 // Use expression body for methods
 
 		private static void UseOrleansLocally()
 		{
@@ -41,7 +45,7 @@ namespace KeyWatcher.Orleans.Client
 					client.Connect().GetAwaiter().GetResult();
 					break;
 				}
-
+				// TODO: Get Rocky to stop laughing at me.
 				catch
 				{
 					Task.Delay(TimeSpan.FromSeconds(1));
@@ -63,11 +67,10 @@ namespace KeyWatcher.Orleans.Client
 			var user = GrainClient.GrainFactory.GetGrain<IUserGrain>(Program.userName);
 			var keys = e.Keys.ToArray();
 
-			// TODO: Must be awaited!
 			user.ProcessAsync(new UserKeysMessage(Program.userName, keys));
 			var message = new string(keys);
 
-			if(message.Contains(Program.Termination))
+			if (message.Contains(Program.Termination))
 			{
 				Application.Exit();
 			}
