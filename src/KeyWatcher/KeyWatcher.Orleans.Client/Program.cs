@@ -23,7 +23,7 @@ namespace KeyWatcher.Orleans.Client
 		private const string AzureUri = "http://keywatcher.azurewebsites.net/api/keywatcher";
 
 		static void Main(string[] args) =>
-			Program.UseOrleansViaWebApi(Program.LocalUri);
+			Program.UseOrleansViaWebApi(Program.AzureUri);
 		//Program.UseOrleansLocally();
 
 		private static void UseOrleansLocally()
@@ -63,6 +63,7 @@ namespace KeyWatcher.Orleans.Client
 			var user = GrainClient.GrainFactory.GetGrain<IUserGrain>(Program.userName);
 			var keys = e.Keys.ToArray();
 
+			// TODO: Must be awaited!
 			user.ProcessAsync(new UserKeysMessage(Program.userName, keys));
 			var message = new string(keys);
 
