@@ -34,10 +34,10 @@ namespace KeyWatcher.XAML
 			//this.connection = new HubConnection("http://localhost:5944");
 
 			// For WebApi app locally...
-			this.connection = new HubConnection("http://localhost:6344");
+			//this.connection = new HubConnection("http://localhost:6344");
 
 			// For Azure instance...
-			//this.connection = new HubConnection("http://keywatcher.azurewebsites.net");
+			this.connection = new HubConnection("http://keywatcher.azurewebsites.net");
 
 			this.proxy = this.connection.CreateHubProxy("KeyWatcherHub");
 			await this.connection.Start();

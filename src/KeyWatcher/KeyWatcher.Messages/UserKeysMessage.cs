@@ -1,4 +1,6 @@
-﻿namespace KeyWatcher.Messages
+﻿using System.Runtime.Serialization;
+
+namespace KeyWatcher.Messages
 {
 	public sealed class UserKeysMessage
 	{

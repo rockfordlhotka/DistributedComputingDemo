@@ -45,11 +45,6 @@ namespace KeyWatcher.Orleans.Grains
 
 			await this.logger.LogAsync($"Received message from {message.Name}: {keys}");
 
-			if (keys.Contains("die"))
-			{
-				throw new NotSupportedException("I will never die!");
-			}
-
 			var foundBadWords = new List<string>();
 
 			foreach (var word in UserGrain.BadWords)

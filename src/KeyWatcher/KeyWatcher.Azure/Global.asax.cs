@@ -19,7 +19,7 @@ namespace KeyWatcher.Azure
 
 		protected void Application_Start()
 		{
-			// TODO: I don't know WHY Orleans doesn't work if I don't do this...
+			// NOTE: I don't know WHY Orleans doesn't work if I don't do this...
 			// But this "helps" get Orleans to find the grains.
 			var x = typeof(UserGrain);
 			AreaRegistration.RegisterAllAreas();
