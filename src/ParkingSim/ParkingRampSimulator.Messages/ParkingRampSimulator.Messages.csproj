@@ -37,14 +37,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMovementMessage.cs" />
-    <Compile Include="ClockTickMessage.cs" />
-    <Compile Include="ExceptionMessage.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="ConstructStatusMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimulatorStatusMessage.cs" />
   </ItemGroup>
+  <Import Project="..\ParkingRampSimulator.Messages.Shared\ParkingRampSimulator.Messages.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
