@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.4
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{C0F0AE62-0140-4C76-A658-2777502E936E}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SFA.UserActor.Interfaces", "KeyWatcher.SFA.UserActor.Interfaces\KeyWatcher.SFA.UserActor.Interfaces.csproj", "{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SFA.Client", "KeyWatcher.SFA.Client\KeyWatcher.SFA.Client.csproj", "{24592466-78E2-4A07-9922-80D549AA5D58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Reactive", "KeyWatcher.Reactive\KeyWatcher.Reactive.csproj", "{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,14 @@ Global
 		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|x64.ActiveCfg = Release|Any CPU
 		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|x64.Build.0 = Release|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|x64.Build.0 = Debug|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Release|x64.ActiveCfg = Release|Any CPU
+		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

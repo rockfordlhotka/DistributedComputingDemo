@@ -15,7 +15,6 @@ namespace KeyWatcher.Dependencies
 
 		public Task SendAsync(string recipient, string title, string message)
 		{
-			Console.Out.WriteLine("About to SignalR...");
 			this.hub.Clients.All.NotificationSent(
 				new SignalRNotificationMessage(recipient, title, message));
 			return Task.CompletedTask;
