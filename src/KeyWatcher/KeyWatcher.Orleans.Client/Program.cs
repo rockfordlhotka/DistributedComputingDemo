@@ -25,8 +25,8 @@ namespace KeyWatcher.Orleans.Client
 #pragma warning disable IDE0022 // Use expression body for methods
 		static void Main(string[] args)
 		{
-			Program.UseOrleansLocally();
-			//Program.UseOrleansViaWebApi(Program.AzureUri);
+			//Program.UseOrleansLocally();
+			Program.UseOrleansViaWebApi(Program.AzureUri);
 		}
 #pragma warning restore IDE0022 // Use expression body for methods
 
