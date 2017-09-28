@@ -19,10 +19,10 @@ namespace KeyWatcher.Reactive
 #pragma warning disable IDE0022 // Use expression body for methods
 		static void Main(string[] args)
 		{
-			Program.HandleKeysViaEvents();
+			//Program.HandleKeysViaEvents();
 			//Program.HandleKeysViaManualObservable();
 			//Program.HandleKeysFromEventPattern();
-			//Program.HandleKeysFromEventPatternWithOperators();
+			Program.HandleKeysFromEventPatternWithOperators();
 		}
 #pragma warning restore IDE0022 // Use expression body for methods
 

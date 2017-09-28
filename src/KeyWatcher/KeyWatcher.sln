@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{C0F0AE62-0140-4C76-A658-2777502E936E}"
 EndProject
@@ -18,14 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Host", "KeyWatcher.Orleans.Host\KeyWatcher.Orleans.Host.csproj", "{4D3F33FA-2623-4B85-8752-9C5A155D474D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{7DC7020F-1263-49DD-8182-025A25AD5984}"
-EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "KeyWatcher.SFA", "KeyWatcher.SFA\KeyWatcher.SFA.sfproj", "{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SFA.UserActor", "KeyWatcher.SFA.UserActor\KeyWatcher.SFA.UserActor.csproj", "{E6436F93-2F60-4054-BD79-B238D897E8DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SFA.UserActor.Interfaces", "KeyWatcher.SFA.UserActor.Interfaces\KeyWatcher.SFA.UserActor.Interfaces.csproj", "{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.SFA.Client", "KeyWatcher.SFA.Client\KeyWatcher.SFA.Client.csproj", "{24592466-78E2-4A07-9922-80D549AA5D58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Reactive", "KeyWatcher.Reactive\KeyWatcher.Reactive.csproj", "{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}"
 EndProject
@@ -101,34 +93,6 @@ Global
 		{7DC7020F-1263-49DD-8182-025A25AD5984}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DC7020F-1263-49DD-8182-025A25AD5984}.Release|x64.ActiveCfg = Release|Any CPU
 		{7DC7020F-1263-49DD-8182-025A25AD5984}.Release|x64.Build.0 = Release|Any CPU
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Debug|x64.ActiveCfg = Debug|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Debug|x64.Build.0 = Debug|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Debug|x64.Deploy.0 = Debug|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Release|Any CPU.ActiveCfg = Release|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Release|x64.ActiveCfg = Release|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Release|x64.Build.0 = Release|x64
-		{D98ABC26-46D9-4C15-AA04-01F0A688E3DB}.Release|x64.Deploy.0 = Release|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Debug|x64.ActiveCfg = Debug|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Debug|x64.Build.0 = Debug|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Release|Any CPU.ActiveCfg = Release|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Release|x64.ActiveCfg = Release|x64
-		{E6436F93-2F60-4054-BD79-B238D897E8DA}.Release|x64.Build.0 = Release|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Debug|x64.ActiveCfg = Debug|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Debug|x64.Build.0 = Debug|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Release|Any CPU.ActiveCfg = Release|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Release|x64.ActiveCfg = Release|x64
-		{0E93727E-4A9E-4CB2-9C30-8C8A1E444DDC}.Release|x64.Build.0 = Release|x64
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Debug|x64.Build.0 = Debug|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|x64.ActiveCfg = Release|Any CPU
-		{24592466-78E2-4A07-9922-80D549AA5D58}.Release|x64.Build.0 = Release|Any CPU
 		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC2B23E-9380-490F-86FB-D0BCF88C5E27}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -140,5 +104,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {596E5426-3996-4B5B-9EA5-47AEECEE40A6}
 	EndGlobalSection
 EndGlobal

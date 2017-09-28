@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OrleansConfiguration xmlns="urn:orleans">
-  <Globals>
-    <SeedNode Address="localhost" Port="11111" />
-    <StorageProviders>
-      <!--<Provider Type="Orleans.Storage.MemoryStorage" Name="Default" />-->
-      <Provider Type="KeyWatcher.Orleans.Host.StorageProviders.FileStorageProvider"
-                Name="Default"
-                RootDirectory=".\Storage"/>
+	<Globals>
+		<SeedNode Address="localhost" Port="11111" />
+		<StorageProviders>
+			<!--<Provider Type="Orleans.Storage.MemoryStorage" Name="Default" />-->
+			<Provider Type="KeyWatcher.Orleans.Host.StorageProviders.FileStorageProvider"
+								Name="Default"
+								RootDirectory=".\Storage"/>
 			<Provider Type="Orleans.Storage.MemoryStorage" Name="PubSubStore" />
 		</StorageProviders>
 		<StreamProviders>
-			<Provider Type="Orleans.Providers.Streams.SimpleMessageStream.SimpleMessageStreamProvider" Name="NotificationStream"/>
+			<Provider Type="Orleans.Providers.Streams.SimpleMessageStream.SimpleMessageStreamProvider" 
+								Name="NotificationStream"/>
 		</StreamProviders>
 	</Globals>
-  <Defaults>
-    <Networking Address="localhost" Port="11111" />
-    <Startup Type="KeyWatcher.Orleans.Host.Startup, KeyWatcher.Orleans.Host" />
-    <ProxyingGateway Address="localhost" Port="30000" />
-  </Defaults>
+	<Defaults>
+		<Networking Address="localhost" Port="11111" />
+		<Startup Type="KeyWatcher.Orleans.Host.Startup, KeyWatcher.Orleans.Host" />
+		<ProxyingGateway Address="localhost" Port="30000" />
+	</Defaults>
 </OrleansConfiguration>

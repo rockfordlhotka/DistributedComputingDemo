@@ -99,7 +99,7 @@ namespace KeyWatcher.Orleans.Client
 			Console.ReadLine();
 		}
 
-		private static string GetUserName() =>
+		private static string GetUserName() => 
 			$"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? $"{Environment.UserDomainName}-" : string.Empty)}{Environment.UserName}";
 	}
 }
