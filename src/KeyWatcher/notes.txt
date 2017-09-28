@@ -1,5 +1,0 @@
-Remember to run VS as administrator if the Service Fabric stuff should be run.
-
-View -> Other Windows -> Diagnostic Windows :: that will show the actor messages in SF.
-
-http://localhost:19080 is the SF manager.
