@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26606.0
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingRampSimulator", "ParkingRampSimulator\ParkingRampSimulator.csproj", "{F5E37DA5-E691-4994-8688-931B49E9E9BC}"
 EndProject
@@ -823,5 +823,8 @@ Global
 		{F3BC0F56-D66D-4AE8-973C-60532B5E7F92} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
 		{62A905BD-CC42-413F-B607-AAAD3B3AE6A8} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
 		{1EED83B4-2912-4200-ABD8-068FE60277C8} = {91FA8718-0D85-4689-A8F2-4D927BE19EC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0044E7EB-53DD-41B1-8982-8B35772E4E17}
 	EndGlobalSection
 EndGlobal
