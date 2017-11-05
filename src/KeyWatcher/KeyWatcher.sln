@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{C0F0AE62-0140-4C76-A658-2777502E936E}"
 EndProject
@@ -106,6 +106,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {596E5426-3996-4B5B-9EA5-47AEECEE40A6}
+		SolutionGuid = {C86231D3-4A73-40BB-B463-12E227AA39F8}
 	EndGlobalSection
 EndGlobal
