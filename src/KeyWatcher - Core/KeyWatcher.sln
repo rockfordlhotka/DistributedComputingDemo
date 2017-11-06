@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Messages", "KeyWatcher.Messages\KeyWatcher.Messages.csproj", "{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{355F5C85-989C-48F8-B9F3-94E8663D8DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Contracts", "KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj", "{76C2388E-C33A-418C-81C9-6DA2F6A663BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Grains", "KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj", "{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Host", "KeyWatcher.Orleans.Host\KeyWatcher.Orleans.Host.csproj", "{828A4820-4DE0-48A9-849D-7B68B679CC0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{233C1176-A0AA-430B-9A9F-7400F89BB77C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355F5C85-989C-48F8-B9F3-94E8663D8DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355F5C85-989C-48F8-B9F3-94E8663D8DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355F5C85-989C-48F8-B9F3-94E8663D8DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355F5C85-989C-48F8-B9F3-94E8663D8DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C2388E-C33A-418C-81C9-6DA2F6A663BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C2388E-C33A-418C-81C9-6DA2F6A663BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C2388E-C33A-418C-81C9-6DA2F6A663BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C2388E-C33A-418C-81C9-6DA2F6A663BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{828A4820-4DE0-48A9-849D-7B68B679CC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828A4820-4DE0-48A9-849D-7B68B679CC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828A4820-4DE0-48A9-849D-7B68B679CC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828A4820-4DE0-48A9-849D-7B68B679CC0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A1F9EBA-095E-4B6B-AF59-8179CD2469AA}
+	EndGlobalSection
+EndGlobal
