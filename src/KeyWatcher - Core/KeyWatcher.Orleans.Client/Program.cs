@@ -5,6 +5,7 @@ using Orleans;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Client
@@ -21,16 +22,23 @@ namespace KeyWatcher.Orleans.Client
 			var client = await Program.StartClientWithRetries();
 			await Console.Out.WriteLineAsync("Begin...");
 
-			while (true)
+			var keys = new List<char>(Program.BufferSize);
+
+			while(true)
 			{
-				var buffer = new char[Program.BufferSize];
-				await Console.In.ReadAsync(buffer, 0, buffer.Length);
-				var content = new string(buffer);
+				keys.Add(Console.ReadKey().KeyChar);
 
-				if (content.Contains("STOP IT")) { break; }
+				if(keys.Count >= Program.BufferSize)
+				{
+					var keyBuffer = keys.ToArray();
+					var content = new string(keyBuffer);
 
-				var user = client.GetGrain<IUserGrain>(userName);
-				await user.ProcessAsync(new UserKeysMessage(userName, buffer));
+					if (content.Contains("STOP IT")) { break; }
+
+					var user = client.GetGrain<IUserGrain>(userName);
+					await user.ProcessAsync(new UserKeysMessage(userName, keyBuffer));
+					keys.Clear();
+				}
 			}
 		}
 

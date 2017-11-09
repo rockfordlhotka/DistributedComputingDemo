@@ -41,7 +41,7 @@ namespace KeyWatcher.Orleans.Host
 
 			await Console.Out.WriteLineAsync("Orleans silo is running.");
 			await Console.Out.WriteLineAsync("Press Enter to terminate...");
-			Console.ReadLine();
+			await Console.In.ReadLineAsync();
 
 			await host.StopAsync();
 			await Console.Out.WriteLineAsync("Orleans silo is terminated.");
