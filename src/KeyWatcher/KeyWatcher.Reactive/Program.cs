@@ -16,15 +16,11 @@ namespace KeyWatcher.Reactive
 
 		private static Queue<char> buffer = new Queue<char>();
 
-#pragma warning disable IDE0022 // Use expression body for methods
-		static void Main(string[] args)
-		{
+		static void Main(string[] args) =>
 			Program.HandleKeysViaEvents();
 			//Program.HandleKeysViaManualObservable();
 			//Program.HandleKeysFromEventPattern();
 			//Program.HandleKeysFromEventPatternWithOperators();
-		}
-#pragma warning restore IDE0022 // Use expression body for methods
 
 		private static void HandleKeysViaEvents()
 		{

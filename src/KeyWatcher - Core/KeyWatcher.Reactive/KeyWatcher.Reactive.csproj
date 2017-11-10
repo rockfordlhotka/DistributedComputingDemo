@@ -17,13 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.0-beta1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj" />
+    <PackageReference Include="System.Reactive" Version="3.1.1" />
   </ItemGroup>
 
 </Project>

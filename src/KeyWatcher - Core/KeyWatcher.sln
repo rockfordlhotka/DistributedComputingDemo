@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Messages", "KeyWatcher.Messages\KeyWatcher.Messages.csproj", "{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Messages", "KeyWatcher.Messages\KeyWatcher.Messages.csproj", "{E5A6FBDF-E83D-4540-B8DC-A7F66B44441A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{355F5C85-989C-48F8-B9F3-94E8663D8DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Dependencies", "KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj", "{355F5C85-989C-48F8-B9F3-94E8663D8DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Contracts", "KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj", "{76C2388E-C33A-418C-81C9-6DA2F6A663BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Contracts", "KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj", "{76C2388E-C33A-418C-81C9-6DA2F6A663BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Grains", "KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj", "{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Grains", "KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj", "{36CA7F2A-0EB4-4B2F-9D1E-A140666E98FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Host", "KeyWatcher.Orleans.Host\KeyWatcher.Orleans.Host.csproj", "{828A4820-4DE0-48A9-849D-7B68B679CC0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Host", "KeyWatcher.Orleans.Host\KeyWatcher.Orleans.Host.csproj", "{828A4820-4DE0-48A9-849D-7B68B679CC0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{233C1176-A0AA-430B-9A9F-7400F89BB77C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{233C1176-A0AA-430B-9A9F-7400F89BB77C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Azure", "KeyWatcher.Azure\KeyWatcher.Azure.csproj", "{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Reactive", "KeyWatcher.Reactive\KeyWatcher.Reactive.csproj", "{C50B5EFA-AF6E-458F-84C5-987E806B4071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
