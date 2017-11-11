@@ -3,7 +3,6 @@ using Autofac.Extensions.DependencyInjection;
 using KeyWatcher.Dependencies;
 using KeyWatcher.Orleans.Grains;
 using KeyWatcher.Orleans.Host.StorageProviders;
-using Microsoft.Extensions.Logging;
 using Orleans.Hosting;
 using Orleans.Runtime.Configuration;
 using System;
@@ -29,7 +28,7 @@ namespace KeyWatcher.Orleans.Host
 				.UseServiceProviderFactory(services =>
 				{
 					var containerBuilder = new ContainerBuilder();
-					containerBuilder.RegisterModule<DependenciesModule>();
+					containerBuilder.RegisterModule(new DependenciesModule(false));
 					containerBuilder.Populate(services);
 					var container = containerBuilder.Build();
 					return new AutofacServiceProvider(container);

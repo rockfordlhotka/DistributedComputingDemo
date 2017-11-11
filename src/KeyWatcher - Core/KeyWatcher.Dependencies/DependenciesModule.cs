@@ -1,27 +1,19 @@
 ﻿using Autofac;
-using Microsoft.AspNetCore.SignalR;
-using System;
 
 namespace KeyWatcher.Dependencies
 {
 	public sealed class DependenciesModule
 		: Module
 	{
-		private readonly IHubContext<KeyWatcherHub, IKeyWatcherHub> hub;
+		private readonly bool useSignalForNotification;
 
-		public DependenciesModule()
-			: base()
-		{
-		}
-
-		public DependenciesModule(IHubContext<KeyWatcherHub, IKeyWatcherHub> hub) =>
-			this.hub = hub ?? throw new ArgumentNullException(nameof(hub));
+		public DependenciesModule(bool useSignalForNotification) => 
+			this.useSignalForNotification = useSignalForNotification;
 
 		protected override void Load(ContainerBuilder builder)
 		{
-			if(this.hub != null)
+			if(this.useSignalForNotification)
 			{
-				builder.RegisterInstance(this.hub).As<IHubContext<KeyWatcherHub, IKeyWatcherHub>>();
 				builder.RegisterType<SignalRNotification>().As<INotification>();
 			}
 			else

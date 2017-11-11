@@ -1,4 +1,5 @@
-﻿using KeyWatcher.Dependencies;
+﻿using Autofac;
+using KeyWatcher.Dependencies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,9 @@ namespace KeyWatcher.Azure
 			services.AddSignalR();
 		}
 
+		public void ConfigureContainer(ContainerBuilder builder) => 
+			builder.RegisterModule(new AzureModule(true));
+
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
@@ -30,7 +34,7 @@ namespace KeyWatcher.Azure
 			app.UseMvc();
 			app.UseSignalR(routes =>
 			{
-				routes.MapHub<KeyWatcherHub>("Keys");
+				routes.MapHub<KeyWatcherHub>("keys");
 			});
 		}
 	}

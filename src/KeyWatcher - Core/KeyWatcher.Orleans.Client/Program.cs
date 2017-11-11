@@ -1,6 +1,5 @@
 ﻿using KeyWatcher.Messages;
 using KeyWatcher.Orleans.Contracts;
-using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
