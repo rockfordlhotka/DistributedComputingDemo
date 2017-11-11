@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-alpha2-final" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.0.0-beta1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KeyWatcher.Dependencies\KeyWatcher.Dependencies.csproj" />
     <ProjectReference Include="..\KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj" />
+    <ProjectReference Include="..\KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj" />
   </ItemGroup>
 
 </Project>
