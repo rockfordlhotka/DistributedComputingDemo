@@ -17,6 +17,7 @@ namespace KeyWatcher.Azure
 			var siloHost = Program.BuildSiloHost(webHost.Services);
 			await siloHost.StartAsync();
 			await webHost.RunAsync();
+			await siloHost.StopAsync();
 		}
 
 		public static IWebHost BuildWebHost(string[] args) =>

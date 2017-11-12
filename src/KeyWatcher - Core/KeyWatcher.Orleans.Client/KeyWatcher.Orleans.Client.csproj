@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KeyWatcher.Messages\KeyWatcher.Messages.csproj" />
     <ProjectReference Include="..\KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj" />
+    <ProjectReference Include="..\KeyWatcher\KeyWatcher.csproj" />
   </ItemGroup>
 
 </Project>

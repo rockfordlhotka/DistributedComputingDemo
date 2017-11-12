@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace KeyWatcher.Reactive
+namespace KeyWatcher
 {
-	internal class EventedKeyWatcher
+	public class EventedKeyWatcher
 		: KeyWatcherBase
 	{
-		internal event EventHandler<KeyEventArgs> KeyLogged;
+		public event EventHandler<KeyEventArgs> KeyLogged;
 
 		protected override void HandleKey(char key) => 
 			this.KeyLogged?.Invoke(this, new KeyEventArgs(key));

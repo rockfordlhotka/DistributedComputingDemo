@@ -20,4 +20,8 @@
     <PackageReference Include="System.Reactive" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KeyWatcher\KeyWatcher.csproj" />
+  </ItemGroup>
+
 </Project>
