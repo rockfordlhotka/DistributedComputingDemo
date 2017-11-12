@@ -33,11 +33,19 @@ namespace KeyWatcher.Azure
 			configuration.AddMemoryStorageProvider("PubSubStore");
 			configuration.AddSimpleMessageStreamProvider("NotificationStream");
 
-			return new SiloHostBuilder()
-				.UseConfiguration(configuration)
-				.UseServiceProviderFactory(services => serviceProvider)
-				.AddApplicationPartsFromReferences(typeof(UserGrain).Assembly)
-				.Build();
+			try
+			{
+				return new SiloHostBuilder()
+					.UseConfiguration(configuration)
+					.UseServiceProviderFactory(services => serviceProvider)
+					.AddApplicationPartsFromReferences(typeof(UserGrain).Assembly)
+					.Build();
+			}
+			catch(Exception e)
+			{
+				Console.Out.WriteLine(e);
+				return null;
+			}
 		}
 	}
 }
