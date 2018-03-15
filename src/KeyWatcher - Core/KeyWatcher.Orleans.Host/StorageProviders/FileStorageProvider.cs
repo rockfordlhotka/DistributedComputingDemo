@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Orleans;
-using Orleans.Providers;
 using Orleans.Runtime;
 using Orleans.Storage;
 using Newtonsoft.Json;
@@ -12,16 +11,10 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 	public sealed class FileStorageProvider
 		: IGrainStorage
 	{
-		public Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState) =>
-			throw new NotImplementedException();
-
-		public Task Close() =>
-			throw new NotImplementedException();
-
-		public Task Init(string name, IProviderRuntime providerRuntime, IProviderConfiguration config)
+		public FileStorageProvider(string name, FileStorageProviderOptions options)
 		{
 			this.Name = name;
-			var rootDirectory = config.Properties["RootDirectory"];
+			var rootDirectory = options.RootDirectory;
 
 			if (string.IsNullOrWhiteSpace(rootDirectory))
 			{
@@ -36,9 +29,10 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 			}
 
 			this.RootDirectory = directory.FullName;
-
-			return Task.CompletedTask;
 		}
+
+		public Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState) =>
+			throw new NotImplementedException();
 
 		public async Task ReadStateAsync(string grainType, GrainReference grainReference, IGrainState grainState)
 		{
@@ -76,7 +70,7 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 			return new FileInfo(path);
 		}
 
-		public string Name { get; set; }
-		public string RootDirectory { get; private set; }
+		public string Name { get; }
+		public string RootDirectory { get; }
 	}
 }

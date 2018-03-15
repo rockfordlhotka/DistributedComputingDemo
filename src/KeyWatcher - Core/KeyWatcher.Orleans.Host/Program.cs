@@ -18,17 +18,11 @@ namespace KeyWatcher.Orleans.Host
 	{
 		public static async Task Main(string[] args)
 		{
-			//var configuration = ClusterConfiguration.LocalhostPrimarySilo();
-			//configuration.Globals.RegisterStorageProvider(typeof(FileStorageProvider).FullName, "Default",
-			//	new Dictionary<string, string>() { { "RootDirectory", @".\Storage" } });
-			////configuration.AddMemoryStorageProvider("Default");
-			//configuration.AddMemoryStorageProvider("PubSubStore");
-			//configuration.AddSimpleMessageStreamProvider("NotificationStream");
-
 			var builder = new SiloHostBuilder()
 				.UseLocalhostClustering()
 				.Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-				.AddMemoryGrainStorage("Default")
+				.AddFileStorage("Default", configureOptions => configureOptions.Configure(options => options.RootDirectory = @".\Storage"))
+				//.AddMemoryGrainStorage("Default")
 				//.ConfigureLogging(logging => logging.AddConsole())
 				.UseServiceProviderFactory(services =>
 				{
