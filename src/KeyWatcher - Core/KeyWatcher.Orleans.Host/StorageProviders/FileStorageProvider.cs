@@ -10,7 +10,7 @@ using System.IO;
 namespace KeyWatcher.Orleans.Host.StorageProviders
 {
 	public sealed class FileStorageProvider
-		: IStorageProvider
+		: IGrainStorage
 	{
 		public Task ClearStateAsync(string grainType, GrainReference grainReference, IGrainState grainState) =>
 			throw new NotImplementedException();
@@ -76,7 +76,6 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 			return new FileInfo(path);
 		}
 
-		public Logger Log { get; set; }
 		public string Name { get; set; }
 		public string RootDirectory { get; private set; }
 	}

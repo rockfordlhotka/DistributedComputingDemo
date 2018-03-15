@@ -15,11 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Host", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.Client", "KeyWatcher.Orleans.Client\KeyWatcher.Orleans.Client.csproj", "{233C1176-A0AA-430B-9A9F-7400F89BB77C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Azure", "KeyWatcher.Azure\KeyWatcher.Azure.csproj", "{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Reactive", "KeyWatcher.Reactive\KeyWatcher.Reactive.csproj", "{C50B5EFA-AF6E-458F-84C5-987E806B4071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher", "KeyWatcher\KeyWatcher.csproj", "{280196C9-E61B-4B4B-9C8D-067BD82E353C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher", "KeyWatcher\KeyWatcher.csproj", "{280196C9-E61B-4B4B-9C8D-067BD82E353C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{233C1176-A0AA-430B-9A9F-7400F89BB77C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94CD7DB7-6B89-407A-A3A9-6793DAFE6145}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50B5EFA-AF6E-458F-84C5-987E806B4071}.Release|Any CPU.ActiveCfg = Release|Any CPU

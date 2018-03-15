@@ -81,10 +81,9 @@ namespace KeyWatcher.Orleans.Client
 			{
 				try
 				{
-					var configuration = ClientConfiguration.LocalhostSilo();
 					client = new ClientBuilder()
-						.UseConfiguration(configuration)
-						.AddApplicationPartsFromReferences(typeof(IUserGrain).Assembly)
+						.UseLocalhostClustering()
+						.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(IUserGrain).Assembly).WithReferences())
 						//.ConfigureLogging(logging => logging.AddConsole())
 						.Build();
 

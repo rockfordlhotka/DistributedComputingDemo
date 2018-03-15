@@ -3,10 +3,13 @@ using Autofac.Extensions.DependencyInjection;
 using KeyWatcher.Dependencies;
 using KeyWatcher.Orleans.Grains;
 using KeyWatcher.Orleans.Host.StorageProviders;
+using Microsoft.Extensions.Logging;
+using Orleans;
+using Orleans.Configuration;
 using Orleans.Hosting;
-using Orleans.Runtime.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Host
@@ -15,15 +18,17 @@ namespace KeyWatcher.Orleans.Host
 	{
 		public static async Task Main(string[] args)
 		{
-			var configuration = ClusterConfiguration.LocalhostPrimarySilo();
-			configuration.Globals.RegisterStorageProvider(typeof(FileStorageProvider).FullName, "Default",
-				new Dictionary<string, string>() { { "RootDirectory", @".\Storage" } });
-			//configuration.AddMemoryStorageProvider("Default");
-			configuration.AddMemoryStorageProvider("PubSubStore");
-			configuration.AddSimpleMessageStreamProvider("NotificationStream");
+			//var configuration = ClusterConfiguration.LocalhostPrimarySilo();
+			//configuration.Globals.RegisterStorageProvider(typeof(FileStorageProvider).FullName, "Default",
+			//	new Dictionary<string, string>() { { "RootDirectory", @".\Storage" } });
+			////configuration.AddMemoryStorageProvider("Default");
+			//configuration.AddMemoryStorageProvider("PubSubStore");
+			//configuration.AddSimpleMessageStreamProvider("NotificationStream");
 
 			var builder = new SiloHostBuilder()
-				.UseConfiguration(configuration)
+				.UseLocalhostClustering()
+				.Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
+				.AddMemoryGrainStorage("Default")
 				//.ConfigureLogging(logging => logging.AddConsole())
 				.UseServiceProviderFactory(services =>
 				{
@@ -33,7 +38,7 @@ namespace KeyWatcher.Orleans.Host
 					var container = containerBuilder.Build();
 					return new AutofacServiceProvider(container);
 				})
-				.AddApplicationPartsFromReferences(typeof(UserGrain).Assembly);
+				.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(UserGrain).Assembly).WithReferences());
 
 			var host = builder.Build();
 			await host.StartAsync();

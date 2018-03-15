@@ -18,8 +18,8 @@ namespace KeyWatcher.Azure
 		{
 			base.Load(builder);
 			builder.RegisterModule(new DependenciesModule(this.useSignalForNotification));
-			builder.Register<Func<string, IUserGrain>>(c =>
-				userName => GrainClient.GrainFactory.GetGrain<IUserGrain>(userName));
+			//builder.Register<Func<string, IUserGrain>>(c =>
+			//	userName => GrainClient.GrainFactory.GetGrain<IUserGrain>(userName));
 		}
 	}
 }
