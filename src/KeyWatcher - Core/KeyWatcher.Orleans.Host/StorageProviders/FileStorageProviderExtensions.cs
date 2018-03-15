@@ -19,7 +19,7 @@ namespace KeyWatcher.Orleans.Host.StorageProviders
 					configureOptions?.Invoke(services.AddOptions<FileStorageProviderOptions>(name));
 					services.ConfigureNamedOptionForLogging<FileStorageProviderOptions>(name);
 					services.TryAddSingleton<IGrainStorage>(
-						instance => instance.GetServiceByName<IGrainStorage>(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME));
+						instance => instance.GetServiceByName<IGrainStorage>(name));
 					services.AddSingletonNamedService<IGrainStorage>(name, FileStorageProviderFactory.Create);
 				});
 	}
