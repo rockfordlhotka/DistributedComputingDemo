@@ -21,8 +21,8 @@ namespace KeyWatcher.Orleans.Client
 		private const string AzureUri = "http://keywatcher.azurewebsites.net/api/keywatcher";
 
 		public static async Task Main(string[] args) =>
-			//await Program.UseOrleansLocallyAsync();
-			await Program.UseOrleansViaWebApiAsync(Program.LocalUri);
+			await Program.UseOrleansLocallyAsync();
+			//await Program.UseOrleansViaWebApiAsync(Program.LocalUri);
 
 		private static async Task UseOrleansLocallyAsync()
 		{

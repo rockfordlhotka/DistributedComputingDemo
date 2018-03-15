@@ -2,6 +2,7 @@
 using KeyWatcher.Orleans.Grains;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Orleans.Hosting;
 using Orleans.Runtime.Configuration;
 using System;
@@ -14,7 +15,7 @@ namespace KeyWatcher.Azure
 		public static async Task Main(string[] args)
 		{
 			var webHost = Program.BuildWebHost(args);
-			var siloHost = Program.BuildSiloHost(webHost.Services);
+			var siloHost = Program.BuildSiloHost();
 			await siloHost.StartAsync();
 			await webHost.RunAsync();
 			await siloHost.StopAsync();
@@ -26,7 +27,7 @@ namespace KeyWatcher.Azure
 				.UseStartup<Startup>()
 				.Build();
 
-		private static ISiloHost BuildSiloHost(IServiceProvider serviceProvider)
+		private static ISiloHost BuildSiloHost()
 		{
 			var configuration = ClusterConfiguration.LocalhostPrimarySilo();
 			configuration.AddMemoryStorageProvider("Default");
@@ -37,7 +38,7 @@ namespace KeyWatcher.Azure
 			{
 				return new SiloHostBuilder()
 					.UseConfiguration(configuration)
-					.UseServiceProviderFactory(services => serviceProvider)
+					.UseServiceProviderFactory(services => services.AddAutofac().BuildServiceProvider())
 					.AddApplicationPartsFromReferences(typeof(UserGrain).Assembly)
 					.Build();
 			}
