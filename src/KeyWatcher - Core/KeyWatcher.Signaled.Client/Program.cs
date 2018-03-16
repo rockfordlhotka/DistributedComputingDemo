@@ -1,10 +1,12 @@
 ﻿using KeyWatcher.Messages;
+using KeyWatcher.Signaled.Client.Extensions;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using Polly;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +28,20 @@ namespace KeyWatcher.Signaled.Client
 
 			connection.On<NotificationMessage>(Common.NotificationSent, data =>
 			{
-				Console.WriteLine($"{Common.NotificationSent} received: {data.Message}");
+				Console.WriteLine();
+				Console.WriteLine($"On() {Common.NotificationSent} received: {data.Message}");
+				Console.WriteLine();
 			});
+			connection.ObserveConnection<NotificationMessage>(Common.NotificationSent)
+				.Where(message => message.Message.Contains("cotton"))
+				.Take(3)
+				.Delay(TimeSpan.FromSeconds(2))
+				.Subscribe(message =>
+				{
+					Console.WriteLine();
+					Console.WriteLine($"ObserveConnection() {Common.NotificationSent} received: {message.Message}");
+					Console.WriteLine();
+				});
 
 			await connection.StartAsync();
 
