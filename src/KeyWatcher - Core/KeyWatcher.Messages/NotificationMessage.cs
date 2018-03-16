@@ -1,8 +1,8 @@
 ﻿namespace KeyWatcher.Messages
 {
-	public sealed class SignalRNotificationMessage
+	public sealed class NotificationMessage
 	{
-		public SignalRNotificationMessage(string recipient,
+		public NotificationMessage(string recipient,
 			string title, string message)
 		{
 			this.Recipient = recipient;

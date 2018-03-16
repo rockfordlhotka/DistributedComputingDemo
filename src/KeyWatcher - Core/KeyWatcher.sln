@@ -19,7 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Reactive", "KeyW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher", "KeyWatcher\KeyWatcher.csproj", "{280196C9-E61B-4B4B-9C8D-067BD82E353C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Orleans.ResilientClient", "KeyWatcher.Orleans.ResilientClient\KeyWatcher.Orleans.ResilientClient.csproj", "{8FD4734C-3DBC-4931-85FE-7ED4DC19A949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyWatcher.Orleans.ResilientClient", "KeyWatcher.Orleans.ResilientClient\KeyWatcher.Orleans.ResilientClient.csproj", "{8FD4734C-3DBC-4931-85FE-7ED4DC19A949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Signaled.Client", "KeyWatcher.Signaled.Client\KeyWatcher.Signaled.Client.csproj", "{768466F7-E66F-47E4-8D0B-51A6078EC317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Signaled.API", "KeyWatcher.Signaled.API\KeyWatcher.Signaled.API.csproj", "{5D311672-79D6-4364-BF5A-370E1DD198B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyWatcher.Signaled.Silo", "KeyWatcher.Signaled.Silo\KeyWatcher.Signaled.Silo.csproj", "{8AB89E6F-F66B-4E96-9243-74EC4E0361C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{8FD4734C-3DBC-4931-85FE-7ED4DC19A949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FD4734C-3DBC-4931-85FE-7ED4DC19A949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FD4734C-3DBC-4931-85FE-7ED4DC19A949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768466F7-E66F-47E4-8D0B-51A6078EC317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768466F7-E66F-47E4-8D0B-51A6078EC317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768466F7-E66F-47E4-8D0B-51A6078EC317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768466F7-E66F-47E4-8D0B-51A6078EC317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D311672-79D6-4364-BF5A-370E1DD198B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D311672-79D6-4364-BF5A-370E1DD198B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D311672-79D6-4364-BF5A-370E1DD198B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D311672-79D6-4364-BF5A-370E1DD198B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB89E6F-F66B-4E96-9243-74EC4E0361C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB89E6F-F66B-4E96-9243-74EC4E0361C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB89E6F-F66B-4E96-9243-74EC4E0361C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB89E6F-F66B-4E96-9243-74EC4E0361C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

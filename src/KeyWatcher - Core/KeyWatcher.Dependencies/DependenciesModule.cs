@@ -1,20 +1,22 @@
 ﻿using Autofac;
+using System.Net.Http;
 
 namespace KeyWatcher.Dependencies
 {
 	public sealed class DependenciesModule
 		: Module
 	{
-		private readonly bool useSignalForNotification;
+		private readonly bool useApiForNotification;
 
-		public DependenciesModule(bool useSignalForNotification) => 
-			this.useSignalForNotification = useSignalForNotification;
+		public DependenciesModule(bool useApiForNotification) => 
+			this.useApiForNotification = useApiForNotification;
 
 		protected override void Load(ContainerBuilder builder)
 		{
-			if(this.useSignalForNotification)
+			if(this.useApiForNotification)
 			{
-				builder.RegisterType<SignalRNotification>().As<INotification>();
+				var client = new HttpClient();
+				builder.RegisterType<APINotification>().As<INotification>();
 			}
 			else
 			{

@@ -4,6 +4,6 @@ namespace KeyWatcher.Dependencies
 {
 	public interface IKeyWatcherHub
 	{
-		void NotificationSent(SignalRNotificationMessage message);
+		void NotificationSent(NotificationMessage message);
 	}
 }
