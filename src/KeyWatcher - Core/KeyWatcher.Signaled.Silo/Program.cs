@@ -22,7 +22,7 @@ namespace KeyWatcher.Signaled.Silo
 				.UseServiceProviderFactory(services =>
 				{
 					var containerBuilder = new ContainerBuilder();
-					containerBuilder.RegisterModule(new DependenciesModule(true));
+					containerBuilder.RegisterModule(new DependenciesModule(true, Common.ApiUri));
 					containerBuilder.Populate(services);
 					var container = containerBuilder.Build();
 					return new AutofacServiceProvider(container);
@@ -32,12 +32,12 @@ namespace KeyWatcher.Signaled.Silo
 			var host = builder.Build();
 			await host.StartAsync();
 
-			await Console.Out.WriteLineAsync("Orleans silo is running.");
+			await Console.Out.WriteLineAsync("Orleans signaled silo is running.");
 			await Console.Out.WriteLineAsync("Press Enter to terminate...");
 			await Console.In.ReadLineAsync();
 
 			await host.StopAsync();
-			await Console.Out.WriteLineAsync("Orleans silo is terminated.");
+			await Console.Out.WriteLineAsync("Orleans signaled silo is terminated.");
 		}
 	}
 }

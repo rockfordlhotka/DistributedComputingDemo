@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KeyWatcher.Orleans.Grains\KeyWatcher.Orleans.Grains.csproj" />
+    <ProjectReference Include="..\KeyWatcher\KeyWatcher.csproj" />
   </ItemGroup>
 
 </Project>

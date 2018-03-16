@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 using System.Net.Http;
 
 namespace KeyWatcher.Dependencies
@@ -7,16 +8,19 @@ namespace KeyWatcher.Dependencies
 		: Module
 	{
 		private readonly bool useApiForNotification;
+		private readonly Uri apiUri;
 
-		public DependenciesModule(bool useApiForNotification) => 
+		public DependenciesModule(bool useApiForNotification, Uri apiUri = null)
+		{
+			this.apiUri = apiUri;
 			this.useApiForNotification = useApiForNotification;
+		}
 
 		protected override void Load(ContainerBuilder builder)
 		{
 			if(this.useApiForNotification)
 			{
-				var client = new HttpClient();
-				builder.RegisterType<APINotification>().As<INotification>();
+				builder.RegisterInstance(new APINotification(new HttpClient(), this.apiUri)).As<INotification>();
 			}
 			else
 			{

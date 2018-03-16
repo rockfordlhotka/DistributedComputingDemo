@@ -17,7 +17,7 @@ namespace KeyWatcher.Orleans.Client
 
 		public static async Task Main(string[] args)
 		{
-			var userName = Program.GetUserName();
+			var userName = Common.GetUserName();
 			var client = await Program.StartClient();
 			await Console.Out.WriteLineAsync("Begin...");
 
@@ -38,9 +38,6 @@ namespace KeyWatcher.Orleans.Client
 
 			keyLogger.Listen();
 		}
-
-		private static string GetUserName() =>
-			$"{(!string.IsNullOrWhiteSpace(Environment.UserDomainName) ? $"{Environment.UserDomainName}-" : string.Empty)}{Environment.UserName}";
 
 		private static async Task<IClusterClient> StartClient(
 			int initializeAttemptsBeforeFailing = Program.RetryAttempts)
