@@ -12,6 +12,7 @@
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-preview1-final" />
     <PackageReference Include="Polly" Version="5.8.0" />
   </ItemGroup>
 
@@ -22,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KeyWatcher.Messages\KeyWatcher.Messages.csproj" />
     <ProjectReference Include="..\KeyWatcher.Orleans.Contracts\KeyWatcher.Orleans.Contracts.csproj" />
+    <ProjectReference Include="..\KeyWatcher\KeyWatcher.csproj" />
   </ItemGroup>
 
 </Project>

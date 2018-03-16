@@ -22,7 +22,7 @@ namespace KeyWatcher.Signaled.Silo
 				.UseServiceProviderFactory(services =>
 				{
 					var containerBuilder = new ContainerBuilder();
-					containerBuilder.RegisterModule(new DependenciesModule(true, Common.ApiUri));
+					containerBuilder.RegisterModule(new DependenciesModule(true, Common.NotificationApiUri));
 					containerBuilder.Populate(services);
 					var container = containerBuilder.Build();
 					return new AutofacServiceProvider(container);

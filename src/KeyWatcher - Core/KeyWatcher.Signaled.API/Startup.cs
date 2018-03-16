@@ -20,8 +20,11 @@ namespace KeyWatcher.Signaled.API
 		public Startup(IConfiguration configuration) => 
 			this.Configuration = configuration;
 
-		public void ConfigureServices(IServiceCollection services) => 
+		public void ConfigureServices(IServiceCollection services)
+		{
 			services.AddMvc();
+			services.AddSignalR();
+		}
 
 		public void ConfigureContainer(ContainerBuilder builder) => 
 			builder.RegisterModule(new ApiModule(Startup.GetClusterClient().Result));
@@ -34,6 +37,11 @@ namespace KeyWatcher.Signaled.API
 			}
 
 			app.UseMvc();
+
+			app.UseSignalR(routes =>
+			{
+				routes.MapHub<KeyWatcherHub>(Common.KeyWatcherPartialUri);
+			});
 		}
 
 		private static async Task<IClusterClient> GetClusterClient(

