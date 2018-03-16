@@ -15,10 +15,7 @@ namespace KeyWatcher.Orleans.Client
 		private static readonly TimeSpan Retry = TimeSpan.FromSeconds(1);
 		private const int RetryAttempts = 5;
 
-		public static async Task Main(string[] args) =>
-			await Program.UseOrleansLocallyAsync();
-
-		private static async Task UseOrleansLocallyAsync()
+		public static async Task Main(string[] args)
 		{
 			var userName = Program.GetUserName();
 			var client = await Program.StartClient();
