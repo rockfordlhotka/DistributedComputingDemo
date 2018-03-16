@@ -1,5 +1,4 @@
-﻿using KeyWatcher.Messages;
-using Microsoft.AspNetCore.SignalR.Client;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Reactive.Disposables;
@@ -8,14 +7,15 @@ namespace KeyWatcher.Signaled.Client.Extensions
 {
 	public static class HubConnectionExtensions
 	{
-		public static IObservable<T> ObserveConnection<T>(this HubConnection @this, string method)
+		public static IObservable<T> Observe<T>(this HubConnection @this, string method)
 		{
 			var observable = new HubConnectionObservable<T>();
 			@this.On<T>(method, data => observable.On(data));
 			return observable;
 		}
 
-		private sealed class HubConnectionObservable<T> : IObservable<T>
+		private sealed class HubConnectionObservable<T> 
+			: IObservable<T>
 		{
 			private readonly List<IObserver<T>> observers =
 				new List<IObserver<T>>();
