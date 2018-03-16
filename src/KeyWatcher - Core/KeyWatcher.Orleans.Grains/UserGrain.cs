@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Grains
 {
-	[StorageProvider(ProviderName = "Default")]
+	[StorageProvider(ProviderName = ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME)]
 	public class UserGrain
 		: Grain<UserGrainState>, IUserGrain
 	{
