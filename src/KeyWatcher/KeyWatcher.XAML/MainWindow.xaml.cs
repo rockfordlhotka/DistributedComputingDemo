@@ -18,13 +18,8 @@ namespace KeyWatcher.XAML
 
 		protected override void OnClosed(EventArgs e)
 		{
-			this.resultsSubscription.SafeDispose();
-
-			if(this.connection != null)
-			{
-				this.connection.Stop();
-			}
-
+			this.resultsSubscription?.Dispose();
+			this.connection?.Stop();
 			base.OnClosed(e);
 		}
 

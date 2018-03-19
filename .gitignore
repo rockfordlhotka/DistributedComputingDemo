@@ -252,5 +252,5 @@ paket-files/
 *.sln.iml
 
 # snapshots from Akka.net
-snapshots/
+Storage/
 /src/ParkingSim/TopicSubFunction/local.settings.json

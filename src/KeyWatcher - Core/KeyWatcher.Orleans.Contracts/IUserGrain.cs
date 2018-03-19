@@ -1,6 +1,5 @@
 ﻿using KeyWatcher.Messages;
 using Orleans;
-using System;
 using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Contracts

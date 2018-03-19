@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KeyWatcher.Orleans.Grains
 {
-	[StorageProvider(ProviderName = "Default")]
+	[StorageProvider(ProviderName = ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME)]
 	public class UserGrain
 		: Grain<UserGrainState>, IUserGrain
 	{
@@ -67,10 +67,6 @@ namespace KeyWatcher.Orleans.Grains
 				var badWords = string.Join(", ", foundBadWords);
 				await this.notification.Value.SendAsync("ITWatchers@YourCompany.com", "BAD WORDS SAID",
 					$"The user {message.Name} typed the following bad words: {badWords}");
-
-				var streamProvider = this.GetStreamProvider("NotificationStream");
-				var stream = streamProvider.GetStream<string>(this.streamId, "NotificationData");
-				await stream.OnNextAsync(badWords);
 			}
 		}
 	}
