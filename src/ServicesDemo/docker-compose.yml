@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  webapplication1:
+    image: webapplication1
+    depends_on:
+      - orderstatusservice
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+      
+  orderstatusservice:
+    image: orderstatusservice
+    build:
+      context: .
+      dockerfile: OrderStatusService/Dockerfile
+
