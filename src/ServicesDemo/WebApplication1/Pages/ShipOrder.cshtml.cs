@@ -53,7 +53,7 @@ namespace WebApplication1.Pages
       var result = task.Result;
 
       //var client = new HttpClient();
-      //var result = client.GetAsync("http://localhost:7071/api/ProcessOrder?name=" + OrderId).Result;
+      //var result = client.GetAsync("http://localhost:7071/api/ProcessOrder?id=" + OrderId).Result;
       //if (result.IsSuccessStatusCode)
       //  Result = "Order shipment requested";
       //else

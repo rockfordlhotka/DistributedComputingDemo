@@ -39,7 +39,7 @@
         @Html.DisplayFor(_ => item.Status)
       </td>
       <td>
-        @Html.DisplayFor(_ => item.LastUpdated.ToLocalTime())
+        @item.LastUpdated.ToLocalTime()
       </td>
     </tr>
     }
