@@ -1,0 +1,48 @@
+﻿@page
+@model WebApplication1.Pages.ShipOrderModel
+@{
+    ViewData["Title"] = "ShipOrder";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>ShipOrder</h2>
+
+<form method="post">
+  <input asp-for="@Model.OrderId"/>
+  <button type="submit" asp-page-handler="ShipOrder">Ship order</button>
+</form>
+
+@if (Model.OrderStatuses != null && Model.OrderStatuses.Count > 0)
+{
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Order id
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Last updated
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model.OrderStatuses)
+    {
+    <tr>
+      <td>
+        @Html.DisplayFor(_ => item.OrderId)
+      </td>
+      <td>
+        @Html.DisplayFor(_ => item.Status)
+      </td>
+      <td>
+        @item.LastUpdated.ToLocalTime()
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
