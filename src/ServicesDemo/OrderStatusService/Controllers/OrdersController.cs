@@ -15,6 +15,10 @@ namespace OrderStatusService.Controllers
     private static List<OrderStatus> _orders = new List<OrderStatus>();
 
     // GET: api/Orders
+    /// <summary>
+    /// Get list of order status information
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public IEnumerable<OrderStatus> Get()
     {
@@ -22,6 +26,11 @@ namespace OrderStatusService.Controllers
     }
 
     // GET: api/Orders/5
+    /// <summary>
+    /// Get order status information for one order
+    /// </summary>
+    /// <param name="id">Order id</param>
+    /// <returns></returns>
     [HttpGet("{id}", Name = "Get")]
     public OrderStatus Get(string id)
     {
@@ -33,6 +42,10 @@ namespace OrderStatusService.Controllers
     }
 
     // POST: api/Orders
+    /// <summary>
+    /// Add or update order status information
+    /// </summary>
+    /// <param name="value">OrderStatus message</param>
     [HttpPost]
     public void Post([FromBody]OrderStatus value)
     {
@@ -40,6 +53,11 @@ namespace OrderStatusService.Controllers
     }
 
     // PUT: api/Orders/5
+    /// <summary>
+    /// Add or update order status information
+    /// </summary>
+    /// <param name="id">Order id</param>
+    /// <param name="value">OrderStatus message</param>
     [HttpPut("{id}")]
     public void Put(string id, [FromBody]OrderStatus value)
     {
@@ -54,6 +72,10 @@ namespace OrderStatusService.Controllers
     }
 
     // DELETE: api/ApiWithActions/5
+    /// <summary>
+    /// Remove order status information
+    /// </summary>
+    /// <param name="id">Order id</param>
     [HttpDelete("{id}")]
     public void Delete(string id)
     {
