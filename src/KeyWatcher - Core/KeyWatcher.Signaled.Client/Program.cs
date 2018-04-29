@@ -69,7 +69,8 @@ namespace KeyWatcher.Signaled.Client
 				var content = new StringContent(message,
 					Encoding.Unicode, "application/json");
 
-				await httpPolicy.ExecuteAsync(async () => await client.PostAsync(Common.KeyWatcherApiUri, content));
+				await httpPolicy.ExecuteAsync(
+					async () => await client.PostAsync(Common.KeyWatcherApiUri, content));
 			};
 
 

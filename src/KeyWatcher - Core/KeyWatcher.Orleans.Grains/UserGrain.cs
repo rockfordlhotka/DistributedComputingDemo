@@ -17,13 +17,11 @@ namespace KeyWatcher.Orleans.Grains
 		private static readonly string[] BadWords = { "cotton", "headed", "ninny", "muggins" };
 		private readonly ILogger logger;
 		private readonly Lazy<INotification> notification;
-		private readonly Guid streamId;
 
 		public UserGrain(ILogger logger, Lazy<INotification> notification)
 		{
 			this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			this.notification = notification ?? throw new ArgumentNullException(nameof(notification));
-			this.streamId = Guid.NewGuid();
 		}
 
 		public override async Task OnActivateAsync()
