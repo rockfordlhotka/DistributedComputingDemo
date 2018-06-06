@@ -2,9 +2,11 @@
 using Autofac.Extensions.DependencyInjection;
 using KeyWatcher.Dependencies;
 using KeyWatcher.Orleans.Grains;
+using KeyWatcher.Orleans.Host.StorageProviders;
 using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
+using Orleans.Providers;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -18,7 +20,9 @@ namespace KeyWatcher.Signaled.Silo
 			var builder = new SiloHostBuilder()
 				.UseLocalhostClustering()
 				.Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-				.AddMemoryGrainStorage("Default")
+				.AddFileStorage(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME,
+					configureOptions => configureOptions.Configure(options => options.RootDirectory = @".\Storage"))
+				//.AddMemoryGrainStorage(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME)
 				.UseServiceProviderFactory(services =>
 				{
 					var containerBuilder = new ContainerBuilder();
