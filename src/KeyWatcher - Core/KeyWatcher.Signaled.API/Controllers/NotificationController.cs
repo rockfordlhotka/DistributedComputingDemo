@@ -16,6 +16,7 @@ namespace KeyWatcher.Signaled.API.Controllers
 			this.context = context ?? throw new ArgumentNullException(nameof(context));
 
 		public async Task Post([FromBody] NotificationMessage value) =>
-			await this.context.Clients.All.SendAsync(Common.NotificationSent, new NotificationMessage(value.Recipient, value.Title, value.Message));
+			await this.context.Clients.All.SendAsync(Common.NotificationSent, 
+				new NotificationMessage(value.Recipient, value.Title, value.Message));
 	}
 }
