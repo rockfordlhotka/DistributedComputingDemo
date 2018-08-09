@@ -23,7 +23,7 @@ namespace KeyWatcher.Signaled.Client
 			await Console.Out.WriteLineAsync("Setting up SignalR client...");
 			var connection = new HubConnectionBuilder()
 				.WithUrl(Common.KeyWatcherHubApiUri)
-				.WithConsoleLogger()
+				//.WithConsoleLogger()
 				.Build();
 
 			connection.On<NotificationMessage>(Common.NotificationSent, data =>
