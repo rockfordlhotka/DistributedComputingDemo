@@ -18,7 +18,9 @@ namespace StartOrderProcessing
     /// <param name="myQueueItem">Order id</param>
     /// <param name="log">Logging trace writer</param>
     [FunctionName("ShipOrderFromQueue")]
-    public static async Task Run([ServiceBusTrigger("shiporder", Connection = "ShipOrderQueue")]string myQueueItem, TraceWriter log)
+    public static async Task Run(
+      [ServiceBusTrigger("shiporder", Connection = "ShipOrderQueue")]
+      string myQueueItem, TraceWriter log)
     {
       var orderId = myQueueItem.Trim();
       if (string.IsNullOrWhiteSpace(orderId))
@@ -30,7 +32,7 @@ namespace StartOrderProcessing
       log.Info($"Order to ship: { myQueueItem }");
       await Task.Delay(rnd.Next(4000) + 1000); // insert artificial delay
 
-      var response = await OrderStatus.SetOrderShippedStatus(orderId);
+      var response = await OrderStatus.SetOrderShippedStatus(orderId, "Shipped");
       log.Info($"Response: { response.StatusCode }: { response.ReasonPhrase }");
     }
 

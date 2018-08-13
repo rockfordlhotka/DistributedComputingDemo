@@ -34,7 +34,7 @@ namespace StartOrderProcessing
       log.Info($"Order to ship: { orderId }");
       await Task.Delay(rnd.Next(4000) + 1000); // insert artificial delay
 
-      var response = await OrderStatus.SetOrderShippedStatus(orderId);
+      var response = await OrderStatus.SetOrderShippedStatus(orderId, "Shipped");
       log.Info($"Response: { response.StatusCode }: { response.ReasonPhrase }");
       return response;
     }

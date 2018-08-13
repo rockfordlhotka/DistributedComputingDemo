@@ -95,7 +95,8 @@ namespace WebApplication1.Pages
     /// <param name="id">Order id</param>
     private void PostShipOrderRequest(string id)
     {
-      var client = new QueueClient("Endpoint=sb://parkingsim.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=cGeFdFfCiTesceUPHAfZ0bprdU0f+th6vqc6/9E+Fvc=", "shiporder");
+      var client = new QueueClient(
+        "Endpoint=sb://servicesdemo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=YGYKoDvilWA0E7is+Vp6fxrulRkIqDKKOw71YC0ePDs=", "shiporder");
       var message = new Message(Encoding.UTF8.GetBytes(id));
       client.SendAsync(message).Wait();
     }

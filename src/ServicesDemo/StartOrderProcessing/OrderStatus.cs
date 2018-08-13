@@ -17,12 +17,12 @@ namespace StartOrderProcessing
     /// </summary>
     /// <param name="id">Order id</param>
     /// <returns></returns>
-    public static async Task<HttpResponseMessage> SetOrderShippedStatus(string id)
+    public static async Task<HttpResponseMessage> SetOrderShippedStatus(string id, string newStatus)
     {
       var client = new HttpClient();
-      var json = JsonConvert.SerializeObject(new OrderStatus { OrderId = id, Status = "Shipped" });
+      var json = JsonConvert.SerializeObject(new OrderStatus { OrderId = id, Status = newStatus });
       var content = new StringContent(json, Encoding.UTF8, "application/json");
-      var response = await client.PutAsync("http://localhost:32794/api/orders/" + id, content);
+      var response = await client.PutAsync("http://localhost:32773/api/orders/" + id, content);
       if (response.StatusCode == System.Net.HttpStatusCode.OK)
         response.ReasonPhrase = $"Order { id } shipped";
       return response;
