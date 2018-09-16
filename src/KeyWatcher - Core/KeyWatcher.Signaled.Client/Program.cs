@@ -1,5 +1,6 @@
 ﻿using KeyWatcher.Messages;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Polly;
 using System;
@@ -23,7 +24,11 @@ namespace KeyWatcher.Signaled.Client
 			await Console.Out.WriteLineAsync("Setting up SignalR client...");
 			var connection = new HubConnectionBuilder()
 				.WithUrl(Common.KeyWatcherHubApiUri)
-				//.WithConsoleLogger()
+				.ConfigureLogging(config =>
+				{
+					config.SetMinimumLevel(LogLevel.Information);
+					config.AddConsole();
+				})
 				.Build();
 
 			connection.On<NotificationMessage>(Common.NotificationSent, data =>
