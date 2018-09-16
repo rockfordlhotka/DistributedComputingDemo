@@ -6,9 +6,7 @@ namespace KeyWatcher.Dependencies
 	internal sealed class Logger
 		: ILogger
 	{
-		public Task LogAsync(string message)
-		{
-			return Console.Out.WriteLineAsync($"Log: {message}");
-		}
+		public Task LogAsync(string message) => 
+			Console.Out.WriteLineAsync($"Log: {message}");
 	}
 }

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reactive" Version="4.1.0-preview.330" />
+    <PackageReference Include="System.Reactive" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
